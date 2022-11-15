@@ -1,0 +1,16 @@
+.profile-image {
+  float: left;
+  width: calc(33.333% - 1rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 3rem;
+}
+
+.portrait {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+/*# sourceMappingURL=style.css.map */
