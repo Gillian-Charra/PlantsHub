@@ -15,6 +15,7 @@ class UserType extends AbstractType
             ->add('name')
             ->add('password')
             ->add('profile_picture')
+            ->add('is_admin')
         ;
     }
 

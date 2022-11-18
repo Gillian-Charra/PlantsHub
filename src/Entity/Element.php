@@ -31,6 +31,10 @@ class Element
     #[ORM\ManyToMany(targetEntity: Plant::class)]
     private Collection $plant;
 
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Plant $idplant = null;
+
     public function __construct()
     {
         $this->plant = new ArrayCollection();
@@ -109,6 +113,18 @@ class Element
     public function removePlant(Plant $plant): self
     {
         $this->plant->removeElement($plant);
+
+        return $this;
+    }
+
+    public function getIdplant(): ?Plant
+    {
+        return $this->idplant;
+    }
+
+    public function setIdplant(?Plant $idplant): self
+    {
+        $this->idplant = $idplant;
 
         return $this;
     }

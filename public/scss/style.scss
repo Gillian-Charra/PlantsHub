@@ -1,0 +1,313 @@
+@use "sass:map";
+$colorprincipale:#555e45;
+$colorsecondary:("r":45,"g":51,"b":49);
+$colortertiary:#4d4d54;
+$icon1:#00ffcc;
+$icon2:#00f0ff;
+$icon3:#76ddff;
+
+.color-prim{
+    background-color:$colorprincipale; 
+}
+.color-sec-lighter{
+    background-color: rgb(map.get($colorsecondary,"r")+4,map.get($colorsecondary,"g")+4,map.get($colorsecondary,"b")+4);
+}
+.color-sec{
+    background-color: rgb(map.get($colorsecondary,"r"),map.get($colorsecondary,"g"),map.get($colorsecondary,"b"));
+}
+.color-sec-slightly-darker{
+    background-color: rgb(map.get($colorsecondary,"r")-4,map.get($colorsecondary,"g")-4,map.get($colorsecondary,"b")-4);
+}
+.color-sec-darker{
+    background-color: rgb(map.get($colorsecondary,"r")-8,map.get($colorsecondary,"g")-8,map.get($colorsecondary,"b")-8);
+}
+.color-tert{
+    background-color: $colortertiary;
+}
+.color-icon-1{
+    color: $icon1;
+}
+.color-icon-2{
+    color: $icon2;
+}
+.color-icon-3{
+    color: $icon3;
+    rotate: -45deg;
+    font-size: 2.35em;
+    padding-top: 20%;
+    padding-left: 0%;
+}
+.light-gray{
+    color: rgba(255, 255, 255, 0.75);
+}
+
+body{
+    text-size-adjust: unset;
+    height: auto;
+    margin: 0;
+    font-family: 'Open Sans', Helvetica,sans-serif;
+    letter-spacing: 0.125em;
+    color: #fff;
+    background-color: rgb(map.get($colorsecondary,"r"),map.get($colorsecondary,"g"),map.get($colorsecondary,"b"));;
+}
+.main{
+    background-image: url("/images/decoration/accueil-fond.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+.navbar{
+    z-index: 1;
+}
+.h-navbar{
+    height: 63px;
+}
+
+.element-navbar{
+    letter-spacing: 0.3em;
+    font-size: 20px;
+    margin: 20px 20px 0 20px;
+    font-family: 'Oswald', Helvetica,sans-serif;
+    z-index: 2;
+}
+.menu-lateral{
+    width: 350px;
+    z-index: 2;
+}
+.options-menu-lateral{
+    border-top: solid 1px rgba(0, 0, 0, 0.125);
+    margin: 0.5em 0 0 0;
+    padding: 0.5em 0 0 0;
+}
+.liens-menu-lateral{
+    color: inherit;
+    display: block;
+    font-size: 0.8em;
+    letter-spacing: 0.225em;
+}
+
+.accueil{
+    height: 100vh;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.5);
+}
+
+
+.contain-titre{
+
+    margin: 20vh 0;
+    flex-direction: column;
+    justify-content: center;
+    width:25%;
+    height:60vh;
+}
+h1::before,h1::after{
+    background: #fff;
+    content: "";
+    display: block;
+    height: 2px;
+    width: 100%;
+
+}
+h1{
+    display: inline-block;
+    padding: 5%;
+    font-size: 3vw;
+    letter-spacing:0.225em;
+    line-height: 1.75em;
+}
+.presentation{
+    letter-spacing:0.225em;
+    font-weight: 400;
+}
+h2{
+    letter-spacing: 0.125em;
+    font-size: 1.225em;
+}
+h2::after{
+    background: rgba(0, 0, 0, 0.125);
+    content: "";
+    display: block;
+    height: 2px;
+    width: 100%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+h3{
+    font-size: 1.225em;
+    letter-spacing: 0.225em;
+}
+
+.cadre-icon{
+    rotate: 45deg;
+    border: solid 2px rgba(0, 0, 0, 0.125);
+    border-radius: 3px;
+    height: 3.5em;
+    width: 3.5em;
+    font-size: 2.3vw;
+
+}
+
+.icon{
+    rotate: -45deg;
+    font-size: 2.35em;
+    padding: 20%;
+}
+
+
+
+.bouton{
+    border: none;
+    height: 4vw;
+    width: 15vw;
+    border-radius: 3px;
+    background-color: #ed4933;
+    color:white;
+    font-weight: 600;
+    letter-spacing:0.425em;
+}
+.bouton-learn-more{
+    background-color: rgba(0,0,0,0);
+    border: #fff 2px solid;
+}
+.table{
+    padding: 0;
+}
+.element-table{
+    padding: 10%;
+    list-style: none;
+    overflow: hidden;
+
+}
+.element-table:nth-child(1) {
+    background-color: rgba(0, 0, 0, 0.035);
+}
+.element-table:nth-child(2) {
+    background-color: rgba(0, 0, 0, 0.07);
+}
+.element-table:nth-child(3) {
+    background-color: rgba(0, 0, 0, 0.105);
+}
+.element-table:nth-child(4) {
+    background-color: rgba(0, 0, 0, 0.14);
+}
+.element-table:nth-child(5) {
+    background-color: rgba(0, 0, 0, 0.175);
+}
+.element-table:nth-child(6) {
+    background-color: rgba(0, 0, 0, 0.21);
+}
+.icon-table{
+    color: $icon1;
+}
+.conclusion{
+    padding: 10vh 0;
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+footer{
+    background-color: rgba(29, 36, 42, 0.9);
+    color: rgba(255, 255, 255, 0.5);
+}
+.liens-externes{
+    font-size: larger;
+}
+.profile-image {
+    float: left;
+    width: calc(33.333% - 1rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 3rem;
+}
+ 
+.portrait{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+@media screen and (max-width: 1000px) {
+    body{
+        font-size: 14px;
+        line-height: 1.65em;
+    }
+    .menu-label{
+        display: none;
+    }
+    .contain-titre{
+        width: 1000px;
+        margin:  10vh 15%;
+
+    }
+    .presentation{
+        letter-spacing: 00.225em;
+    }
+    .accueil{
+        height: 50vh;
+    }
+    h1{
+        font-size: 1.25em;
+    }
+    .titre-demonstration{
+        width: 80%;
+        margin-top: 0;
+        font-size: 1.1em;
+    }
+    .div-demonstration{
+        width: 100%;
+        padding-bottom: 10%;
+    }
+    .section-demonstration{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .table{
+        flex-direction: column;
+        text-align: center;
+    }
+    .element-table{
+        background-color: rgba(0, 0, 0, 0);
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .element-table::after{
+        background: rgba(0, 0, 0, 0.125);
+        content: "";
+        display: block;
+        height: 2px;
+        width: 100%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    
+    }
+    .element-table:nth-child(1) {
+        background-color: rgba(0, 0, 0, 0);
+    }
+    .element-table:nth-child(2) {
+        background-color: rgba(0, 0, 0, 0);
+    }
+    .element-table:nth-child(3) {
+        background-color: rgba(0, 0, 0, 0);
+    }
+    .element-table:nth-child(4) {
+        background-color: rgba(0, 0, 0, 0);
+    }
+    .element-table:nth-child(5) {
+        background-color: rgba(0, 0, 0, 0);
+    }
+    .element-table:nth-child(6) {
+        background-color: rgba(0, 0, 0, 0);
+    }
+    .contenu-conclusion{
+        flex-direction: column;
+    }
+    .texte-conclusion{
+        width: 100%;
+        text-align: center;
+    }
+    .bouton{
+        width: 80%;
+        height :5vh;
+    }
+}

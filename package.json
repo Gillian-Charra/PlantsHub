@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "sass": "^1.55.0"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "stylelint": "^14.12.1"
+  },
+  "scripts": {
+    "compile": "sass style.scss style.css",
+    "compile-help":"sass helpers.scss helpers.css",
+    "watch": "sass --watch public/scss/style.scss public/css/style.css",
+    "watch-help": "sass --watch public/scss/helpers.scss public/css/helpers.css"
+  }
+}

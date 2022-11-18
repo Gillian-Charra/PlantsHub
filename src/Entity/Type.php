@@ -19,6 +19,12 @@ class Type
     #[ORM\Column(length: 255)]
     private ?string $html_tag = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $html_tag_end = null;
+    public function __toString()
+    {
+        return $this->name;
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +50,18 @@ class Type
     public function setHtmlTag(string $html_tag): self
     {
         $this->html_tag = $html_tag;
+
+        return $this;
+    }
+
+    public function getHtmlTagEnd(): ?string
+    {
+        return $this->html_tag_end;
+    }
+
+    public function setHtmlTagEnd(string $html_tag_end): self
+    {
+        $this->html_tag_end = $html_tag_end;
 
         return $this;
     }

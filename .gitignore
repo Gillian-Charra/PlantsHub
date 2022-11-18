@@ -1,6 +1,8 @@
 
 ###> symfony/framework-bundle ###
 .env
+/public/images/plant_images
+/public/images/avatar
 /.env.local
 /.env.local.php
 /.env.*.local
@@ -8,6 +10,7 @@
 /public/bundles/
 /var/
 /vendor/
+/node_modules/
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###

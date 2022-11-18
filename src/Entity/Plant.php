@@ -18,7 +18,10 @@ class Plant
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
-
+    public function __toString()
+    {
+        return $this->name;
+    }
     public function getId(): ?int
     {
         return $this->id;
