@@ -6,7 +6,7 @@ use App\Entity\Element;
 use App\Entity\Plant;
 use App\Entity\Type;
 use App\Entity\User;
-use App\Entity\UserHasDicovered;
+use App\Entity\UserHasDiscovered;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -24,6 +24,9 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
+        if (!$this->getUser()->isIsAdmin()) {
+             return $this->redirect('/accueil');
+        }
         $url= $this->adminUrlGenerator
             ->setController(PlantCrudController::class)
             ->generateUrl();
@@ -36,9 +39,7 @@ class DashboardController extends AbstractDashboardController
 
         // Option 2. You can make your dashboard redirect to different pages depending on the user
         //
-        // if ('jane' === $this->getUser()->getUsername()) {
-        //     return $this->redirect('...');
-        // }
+
 
         // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
         // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
@@ -54,6 +55,7 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
+
         yield MenuItem::section('Plantes');
         yield MenuItem::subMenu('Plantes','fas fa-bars')->setSubItems([
             MenuItem::linkToCrud('Afficher Plantes','fas fa-eye',Plant::class),
@@ -74,7 +76,8 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Ajouter un utilisateurs','fas fa-plus',User::class)->setAction(Crud::PAGE_NEW),
         ]);
         yield MenuItem::subMenu('Découvertes des utilisateurs','fas fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Afficher les photos','fas fa-eye',UserHasDicovered::class),
+            MenuItem::linkToCrud('Afficher les photos','fas fa-eye',UserHasDiscovered::class),
+            MenuItem::linkToCrud('Ajouter une photo','fas fa-plus',UserHasDiscovered::class)->setAction(Crud::PAGE_NEW),
         ]);
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }

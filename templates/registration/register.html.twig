@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 	{% block head %}
 
-	<!--CSS-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/normalize.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/helpers.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}">
-	    {% endblock %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/helpers.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/form.css') }}">
+    {% endblock %}
 		{% block ul %}
 		<ul>
 			<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/login">Se connecter</a></li>
@@ -15,15 +15,36 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
-
+ <div class="container">
+   <div id="signup">
+      <div class="signup-screen">
+         <div class="space-bot text-center">
+            <h1>Sign up</h1>
+           <div class="divider"></div>
+        </div>
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.name) }}
-        {{ form_row(registrationForm.plainPassword, {
+
+
+        <div class="input-field col s6">
+                {{ form_row(registrationForm.name) }}
+        </div>
+        <div class="input-field col s6">
+                {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
+        </div>
+        <div class="input-field col s6">
+                {{ form_row(registrationForm.profile_picture, {
+            label: 'Photo de profil'
+        }) }}
+        </div>
+        <div class="input-field col s6" style="text-align:center;">
+            {{ form_row(registrationForm.agreeTerms) }}
+        </div>
         <button type="submit" class="btn">Register</button>
+                      </div>
     {{ form_end(registrationForm) }}
+               </div>
+        </div>
+    </div>
 {% endblock %}

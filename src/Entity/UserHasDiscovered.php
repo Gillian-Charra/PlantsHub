@@ -2,29 +2,30 @@
 
 namespace App\Entity;
 
-use App\Repository\UserHasDicoveredRepository;
+use App\Repository\UserHasDiscoveredRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: UserHasDicoveredRepository::class)]
-class UserHasDicovered
+#[ORM\Entity(repositoryClass: UserHasDiscoveredRepository::class)]
+class UserHasDiscovered
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'usersHasDiscovered')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Plant $idplant = null;
+    private ?Plant $plant = null;
 
-    #[ORM\ManyToOne]
-    private ?User $iduser = null;
+    #[ORM\ManyToOne(inversedBy: 'userHasDiscovered')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 10)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $longitude = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 10)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $latitude = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -38,26 +39,26 @@ class UserHasDicovered
         return $this->id;
     }
 
-    public function getIdplant(): ?Plant
+    public function getPlant(): ?Plant
     {
-        return $this->idplant;
+        return $this->plant;
     }
 
-    public function setIdplant(?Plant $idplant): self
+    public function setPlant(?Plant $plant): self
     {
-        $this->idplant = $idplant;
+        $this->plant = $plant;
 
         return $this;
     }
 
-    public function getIduser(): ?User
+    public function getUser(): ?User
     {
-        return $this->iduser;
+        return $this->user;
     }
 
-    public function setIduser(?User $iduser): self
+    public function setUser(?User $user): self
     {
-        $this->iduser = $iduser;
+        $this->user = $user;
 
         return $this;
     }
@@ -67,7 +68,7 @@ class UserHasDicovered
         return $this->longitude;
     }
 
-    public function setLongitude(string $longitude): self
+    public function setLongitude(?string $longitude): self
     {
         $this->longitude = $longitude;
 
@@ -79,7 +80,7 @@ class UserHasDicovered
         return $this->latitude;
     }
 
-    public function setLatitude(string $latitude): self
+    public function setLatitude(?string $latitude): self
     {
         $this->latitude = $latitude;
 

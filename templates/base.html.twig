@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    {% block head %}
-	    {% endblock %}
-
     <title>PlantsHub</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,14 +9,20 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;800&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/5346e6abaa.js" crossorigin="anonymous"></script>
+    {% block head %}
+	{% endblock %}
+
+
 </head>
 
 	<div onclick="menuVertical()" class="pointer element-navbar top-right-fix"><span class="menu-label">MENU</span><span class="fa-solid fa-bars"></span> </div>
+
 	<div class="color-prim top-right-fix w-0 h-100 transition-rapide-horiz premier-plan" id="navbar-laterale">
 		{% block ul %}
         {% endblock %}
-
 	</div>
+	<div id="content" style="min-height:100vh">
         {% block body %}
         {% endblock %}
+	</div>
     <script src="{{ asset('script/app.js') }}"></script>

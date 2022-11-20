@@ -3,14 +3,26 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/normalize.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/helpers.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+
     {% endblock %}
 
 		{% block ul %}
 		<ul>
-			<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/index">Accueil</a></li>
-			<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/login">Se connecter</a></li>
-            <li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/register">S'enregistrer</a></li>
-			<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/logout">Se deconnecter</a></li>
+			<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/accueil">Accueil</a></li>
+
+			{% if app.user %}
+			<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/logout">Se deconnecter de {{ app.user.userIdentifier }}</a></li>
+
+
+			{% if app.user.isadmin %}
+			<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/admin">Administration du site</a></li>
+
+			{% endif %}
+			{% else %}
+				<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/login">Se connecter</a></li>
+            	<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/register">S'enregistrer</a></li>
+
+			{% endif %}
 		</ul>
        {% endblock %}
 {% block body %}
@@ -27,22 +39,17 @@
 				<h1>											
 					PlantsHub
 				</h1>
-				<p class="presentation">Decouvre le jeu du jour.</p>
-				<button class="bouton">JOUER</button>
+				<p class="presentation">			{% if app.user %}Bonjour {{app.user.name}}!<br/>{% endif %}Decouvre le jeu du jour.</p>
+				<button class="bouton" onclick="window.location.href = '/play';">JOUER</button>
 			</div>
 		</div>
 		<div class="texte-centre flex-col w-100 color-prim" id="pointdaffichagenavbar">
 			<h2 class="margin-lat-25 margin-top-10 w-50 rw-80 rmargin-lat-10">
 				Les plantes à la une
 			</h2>
-			<p class="margin-lat-25 margin-vert-0 w-50 rw-80 rmargin-lat-10 light-gray">
+			<p class="margin-lat-25 margin-vert-0 w-50 rw-80 rmargin-lat-10 light-gray margin-bot-10">
 				description
 			</p>
-			<ul class="flex-row affichage-icons w-50 margin-lat-25 margin-top-5 margin-bot-10 li-clean">
-				<li class="margin-lat-10"><div class="cadre-icon"><span class="fa-regular fa-gem icon color-icon-1"></span></div></li>
-				<li class="margin-lat-10"><div class="cadre-icon"><span class="fa-regular fa-heart icon color-icon-2"></span></div></li>
-				<li class="margin-lat-10"><div class="cadre-icon"><span class="fa-solid fa-code color-icon-3"></span></div></li>
-			</ul>
 		</div>
 
 		<div class="flex-row w-100 color-sec section-demonstration">
@@ -50,8 +57,8 @@
 				<img class="w-100" src="/images/plant_images/{{plants[0].image}}">
 			</div>
 			<div class="w-60 div-demonstration">
-				<h3 class="titre-demonstration w-60 margin-lat-10 margin-top-15">MAGNA PRIMIS LOBORTIS SED ULLAMCORPER</h3>
-				<p class="paragraphe w-80 margin-lat-10 ">Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
+				<h3 class="titre-demonstration w-60 margin-lat-10 margin-top-15">{{plants[0].name}}</h3>
+				<div class="paragraphe w-80 margin-lat-10 ">{{plants[0].descriptionBefore|raw}}</div>
 			</div>
 		</div>
 		<div class="flex-row-rev w-100 color-sec-slightly-darker section-demonstration">
@@ -59,8 +66,8 @@
 				<img class="w-100" src="/images/plant_images/{{plants[1].image}}">
 			</div>
 			<div class="w-60 div-demonstration">
-				<h3 class="titre-demonstration w-60 margin-lat-10 margin-top-15">TORTOR DOLORE FEUGIAT ELEMENTUM MAGNA</h3>
-				<p class="paragraphe w-80 margin-lat-10">Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
+				<h3 class="titre-demonstration w-60 margin-lat-10 margin-top-15">{{plants[1].name}}</h3>
+				<div class="paragraphe w-80 margin-lat-10">{{plants[1].descriptionBefore|raw}}</div>
 			</div>
 
 		</div>
@@ -69,8 +76,8 @@
 				<img class="w-100" src="/images/plant_images/{{plants[2].image}}">
 			</div>
 			<div class="w-60 div-demonstration">
-				<h3 class="titre-demonstration w-60 margin-lat-10 margin-top-15">AUGUE ELEIFEND ALIQUET SED CONDIMENTUM</h3>
-				<p class="paragraphe w-80 margin-lat-10">Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
+				<h3 class="titre-demonstration w-60 margin-lat-10 margin-top-15">{{plants[2].name}}</h3>
+				<div class="paragraphe w-80 margin-lat-10">{{plants[2].descriptionBefore|raw}}</div>
 			</div>
 		</div>
 		<div class="flex-col w-100 color-tert">
@@ -89,18 +96,20 @@
 				<li class="element-table w-30 rw-100"><span class="icon-table fa-solid fa-flag"></span><h3>TORTOR UT</h3><p class="light-gray">Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p></li>
 			</ul>
 		</div>
+		{% if app.user %}
 		<div class="conclusion  w-100">
 			<div class="contenu-conclusion flex-row w-100">
 				<div class="texte-conclusion flex-col w-65">
-					<h3 class=" w-80 margin-lat-10 margin-vert-0">ARCUE UT VEL COMMODO</h3>
+					<h3 class=" w-80 margin-lat-10 margin-vert-0">Vous avez découvert {{app.user.discoveredCount()}} plantes</h3>
 					<p class="paragraphe w-80 margin-lat-10">Aliquam ut ex ut augue consectetur interdum endrerit imperdiet amet eleifend fringilla.</p>
 				</div>
 				<div class="flex-col w-35 rw-100">
-					<button class="bouton rmargin-lat-10 margin-lat-35">ACTIVATE</button>
-					<button class="bouton  margin-top-5  margin-lat-35 rmargin-lat-10 bouton-learn-more">LEARN MORE</button>
+					<button class="bouton rmargin-lat-10 margin-lat-35" onclick="window.location.href = '/play';">Jouer</button>
+					<button class="bouton  margin-top-5  margin-lat-35 rmargin-lat-10 bouton-learn-more onclick="window.location.href = '/stats';"">Voir mes statistiques</button>
 				</div>
 			</div>
 		</div>
+		{% endif %}
 		<footer class="flex-col w-100 texte-centre">
 			<div class="liens-externes w-30 margin-lat-35 margin-top-10">
 				<span class="fa-brands fa-twitter"></span>

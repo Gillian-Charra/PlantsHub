@@ -43,9 +43,8 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-
             ])
-            ->add('profile_picture', FileType::class)
+            ->add('profile_picture',FileType::class)
         ;
     }
 

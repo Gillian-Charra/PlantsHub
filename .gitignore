@@ -1,8 +1,9 @@
 
 ###> symfony/framework-bundle ###
 .env
-/public/images/plant_images
-/public/images/avatar
+/public/images/plant_images/
+/public/images/avatar/
+/public/images/photo/
 /.env.local
 /.env.local.php
 /.env.*.local

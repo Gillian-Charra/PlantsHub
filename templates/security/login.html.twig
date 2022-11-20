@@ -1,21 +1,24 @@
 {% extends 'base.html.twig' %}
-{% block head %}
-	<!--CSS-->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/normalize.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/helpers.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}">
-{% endblock %}
-		{% block ul %}
+	{% block head %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/helpers.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/form.css') }}">
+    {% endblock %}
+    {% block ul %}
 		<ul>
             <li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/register">S'enregistrer</a></li>
 		</ul>
-       {% endblock %}
-
+    {% endblock %}
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post">
+ <div class="container">
+   <div id="signup">
+      <div class="signup-screen">
+         <div class="space-bot text-center">
+<form method="post" class="form-register" method="post" name="register" novalidate>
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -25,16 +28,23 @@
             You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
+            <h1>Sign in</h1>
+           <div class="divider"></div>
+        </div>
+        <div class="input-field col s6">
+            <label for="inputName">Name</label>
+            <input type="text" value="{{ last_username }}" name="name" id="inputName"  autocomplete="username" required autofocus>
+        </div>
+        <div class="input-field col s6">
+            <label for="inputPassword">Password</label>
+            <input type="password" name="password" id="inputPassword"  autocomplete="current-password" required>
+        </div>
+            <button class="btn btn-lg btn-primary" type="submit">
+        Sign in
+    </button>
+               </div>
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputName">Name</label>
-    <input type="text" value="{{ last_username }}" name="name" id="inputName" class="form-control" autocomplete="username" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -47,8 +57,8 @@
         </div>
     #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
+
 </form>
+        </div>
+    </div>
 {% endblock %}

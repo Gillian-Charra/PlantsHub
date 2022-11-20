@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\UserHasDicovered;
+use App\Entity\UserHasDiscovered;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<UserHasDicovered>
+ * @extends ServiceEntityRepository<UserHasDiscovered>
  *
- * @method UserHasDicovered|null find($id, $lockMode = null, $lockVersion = null)
- * @method UserHasDicovered|null findOneBy(array $criteria, array $orderBy = null)
- * @method UserHasDicovered[]    findAll()
- * @method UserHasDicovered[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method UserHasDiscovered|null find($id, $lockMode = null, $lockVersion = null)
+ * @method UserHasDiscovered|null findOneBy(array $criteria, array $orderBy = null)
+ * @method UserHasDiscovered[]    findAll()
+ * @method UserHasDiscovered[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserHasDicoveredRepository extends ServiceEntityRepository
+class UserHasDiscoveredRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, UserHasDicovered::class);
+        parent::__construct($registry, UserHasDiscovered::class);
     }
 
-    public function save(UserHasDicovered $entity, bool $flush = false): void
+    public function save(UserHasDiscovered $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class UserHasDicoveredRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(UserHasDicovered $entity, bool $flush = false): void
+    public function remove(UserHasDiscovered $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class UserHasDicoveredRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return UserHasDicovered[] Returns an array of UserHasDicovered objects
+//     * @return UserHasDiscovered[] Returns an array of UserHasDiscovered objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class UserHasDicoveredRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?UserHasDicovered
+//    public function findOneBySomeField($value): ?UserHasDiscovered
 //    {
 //        return $this->createQueryBuilder('u')
 //            ->andWhere('u.exampleField = :val')
