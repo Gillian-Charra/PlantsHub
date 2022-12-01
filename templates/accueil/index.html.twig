@@ -12,7 +12,7 @@
 
 			{% if app.user %}
 			<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/logout">Se deconnecter de {{ app.user.userIdentifier }}</a></li>
-			<li class="user-options-button li-clean"><a class="liens-menu-lateral a-clean" href="/logout"><img class="profile-image" src="/images/avatar/{{ app.user.profilepicture }}"/></a></li>
+			<li class="user-options-button li-clean"><a class="liens-menu-lateral a-clean" href="/profile-settings"><img class="profile-image" src="/images/avatar/{{ app.user.profilepicture }}"/></a></li>
 
 			{% if app.user.isadmin %}
 			<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/admin">Administration du site</a></li>
@@ -39,8 +39,10 @@
 				<h1 class="titre">											
 					PlantsHub
 				</h1>
-				<p class="presentation">			{% if app.user %}Bonjour {{app.user.name}} !<br/>{% endif %}Decouvre le jeu du jour.</p>
-				<button class="bouton" onclick="window.location.href = '/play';">JOUER</button>
+				{% if app.user %}
+					<p class="presentation">			Bonjour {{app.user.name}} !<br/>Decouvre le jeu du jour.</p>
+					<button class="bouton" onclick="window.location.href = '/play';">JOUER</button>
+				{% endif %}
 			</div>
 		</div>
 		<div class="texte-centre flex-col w-100 color-prim" id="pointdaffichagenavbar">
@@ -86,7 +88,7 @@
 				Inserer Bullshit pedagogique
 			</h2>
 			<p class="texte-centre light-gray margin-lat-25 margin-vert-0 w-50 rw-80 rmargin-lat-10">
-				Aliquam ut ex ut augue consectetur interdum. Donec amet imperdiet eleifend fringilla tincidunt. Nullam dui leo Aenean mi ligula, rhoncus ullamcorper.
+				Les plantes ont été jusqu'au milieu du XX siècle l'un des trois grands groupes dans lesquels les êtres vivants étaient traditionnellement répartis, les deux autres groupes étant celui des animaux et celui des Fungi plus connus sous le nom de champignons.
 			</p>
 			<ul class="table overflow-hidden flex-wrap w-80 h-80 margin-lat-10 margin-vert-10">
 				<li class="element-table w-30 rw-100"><span class="icon-table fa-solid fa-paper-plane"></span><h3>ARCU ACCUMSAN</h3><p class="light-gray">Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p></li>
@@ -112,7 +114,7 @@
 		</div>
 		{% endif %}
 		<footer class="flex-col w-100 texte-centre">
-			<div class="credits margin-bot-10 margin-top-5">
+			<div class="credits margin-bot-5 margin-top-10">
 				<p>CE CHEF D'OEUVRE VOUS A ÉTÉ APPORTÉ PAR YOHANN ET GILLIAN MAITRES PHP</p>
 			</div>
 		</footer>

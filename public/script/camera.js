@@ -100,9 +100,8 @@ if (navigator.geolocation) {
   } 
 $("#save").click(function()  {
 
-
-    
-  console.log( document.getElementById('longitude').innerHTML)
+  console.log('mesv')
+  console.log(canvas.toDataURL('image/webp'))
   $.ajax({
      type: "POST",
      url: 'apiphoto',

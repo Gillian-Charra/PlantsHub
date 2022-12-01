@@ -20,7 +20,7 @@ security:
             security: false
         main:
             lazy: true
-            provider: users_in_memory
+            provider: app_user_provider
             logout:
                 path: /logout 
                 target: app_login

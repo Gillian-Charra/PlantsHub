@@ -24,7 +24,7 @@ class PlantCrudController extends AbstractCrudController
             IntegerField::new('level'),
             ImageField::new('image')
                 ->setUploadDir('public/images/plant_images')
-                ->setUploadedFileNamePattern('[year]-[month]-[day]_[slug].[extension]')
+                ->setUploadedFileNamePattern('[slug].[extension]')
                 ->setBasePath('images/plant_images'),
             TextEditorField::new('description_before'),
             TextEditorField::new('description_after'),
