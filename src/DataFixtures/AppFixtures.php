@@ -35,7 +35,7 @@ class AppFixtures extends Fixture
         $superAdmin = new user();
         $superAdmin -> setName("Admin");
         $superAdmin -> setPassword($encrypted);
-        $superAdmin -> setProfilePicture("la chevre.jpg");
+        $superAdmin -> setProfilePicture("imageParDefaut.png");
         $superAdmin -> setIsAdmin("1");
         $superAdmin -> setRoles($roles);
         $manager->persist($superAdmin);

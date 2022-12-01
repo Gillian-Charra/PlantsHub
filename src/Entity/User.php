@@ -41,6 +41,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserHasDiscovered::class, orphanRemoval: true)]
     private Collection $userHasDiscovered;
 
+    #[ORM\Column]
+    private ?int $XP = 1;
+
+    #[ORM\Column]
+    private ?int $level = 1;
+
     public function __construct()
     {
         $this->userHasDiscovered = new ArrayCollection();
@@ -173,6 +179,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $userHasDiscovered->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getXP(): ?int
+    {
+        return $this->XP;
+    }
+
+    public function setXP(int $XP): self
+    {
+        $this->XP = $XP;
+
+        return $this;
+    }
+
+    public function getLevel(): ?int
+    {
+        return $this->level;
+    }
+
+    public function setLevel(int $level): self
+    {
+        $this->level = $level;
 
         return $this;
     }
