@@ -9,6 +9,8 @@
 /var/
 /vendor/
 /node_modules/
+/public/images/plant_images
+!/public/images/plant_images/fixtures
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
