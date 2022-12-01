@@ -34,6 +34,10 @@ class Plant
     #[ORM\OneToMany(mappedBy: 'plant', targetEntity: UserHasDiscovered::class, orphanRemoval: true)]
     private Collection $usersHasDiscovered;
 
+    #[ORM\ManyToOne(inversedBy: 'plants')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Family $family = null;
+
     public function __construct()
     {
         $this->usersHasDiscovered = new ArrayCollection();
@@ -133,6 +137,18 @@ class Plant
                 $usersHasDiscovered->setPlant(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFamily(): ?Family
+    {
+        return $this->family;
+    }
+
+    public function setFamily(?Family $family): self
+    {
+        $this->family = $family;
 
         return $this;
     }

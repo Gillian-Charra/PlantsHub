@@ -1,10 +1,8 @@
 <?php
 
 namespace App\Controller\Admin;
-
-use App\Entity\Element;
+use App\Entity\Family;
 use App\Entity\Plant;
-use App\Entity\Type;
 use App\Entity\User;
 use App\Entity\UserHasDiscovered;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -66,28 +64,23 @@ class DashboardController extends AbstractDashboardController
     {
 
         yield MenuItem::section('Plantes');
-        yield MenuItem::subMenu('Plantes','fas fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Afficher Plantes','fas fa-eye',Plant::class),
-            MenuItem::linkToCrud('Ajouter Plantes','fas fa-plus',Plant::class)->setAction(Crud::PAGE_NEW),
-        ]);
-        yield MenuItem::section('Description');
-        yield MenuItem::subMenu('Elements','fas fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Afficher les elements','fas fa-eye',Element::class),
-            MenuItem::linkToCrud('Ajouter element','fas fa-plus',Element::class)->setAction(Crud::PAGE_NEW),
-        ]);
-        yield MenuItem::subMenu('Types','fas fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Afficher les types','fas fa-eye',Type::class),
-            MenuItem::linkToCrud('Ajouter un type','fas fa-plus',Type::class)->setAction(Crud::PAGE_NEW),
-        ]);
+            yield MenuItem::subMenu('Plantes','fas fa-bars')->setSubItems([
+                MenuItem::linkToCrud('Afficher Plantes','fas fa-eye',Plant::class),
+                MenuItem::linkToCrud('Ajouter Plantes','fas fa-plus',Plant::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Familles de plantes','fas fa-bars')->setSubItems([
+                MenuItem::linkToCrud('Afficher Familles de plantes','fas fa-eye',Family::class),
+                MenuItem::linkToCrud('Ajouter Famille de plante','fas fa-plus',Family::class)->setAction(Crud::PAGE_NEW),
+            ]);
         yield MenuItem::section('Utilisateurs');
-        yield MenuItem::subMenu('Utilisateurs','fas fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Afficher les utilisateurs','fas fa-eye',User::class),
-            MenuItem::linkToCrud('Ajouter un utilisateurs','fas fa-plus',User::class)->setAction(Crud::PAGE_NEW),
-        ]);
-        yield MenuItem::subMenu('Découvertes des utilisateurs','fas fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Afficher les photos','fas fa-eye',UserHasDiscovered::class),
-            MenuItem::linkToCrud('Ajouter une photo','fas fa-plus',UserHasDiscovered::class)->setAction(Crud::PAGE_NEW),
-        ]);
+            yield MenuItem::subMenu('Utilisateurs','fas fa-bars')->setSubItems([
+                MenuItem::linkToCrud('Afficher les utilisateurs','fas fa-eye',User::class),
+                MenuItem::linkToCrud('Ajouter un utilisateurs','fas fa-plus',User::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Découvertes des utilisateurs','fas fa-bars')->setSubItems([
+                MenuItem::linkToCrud('Afficher les photos','fas fa-eye',UserHasDiscovered::class),
+                MenuItem::linkToCrud('Ajouter une photo','fas fa-plus',UserHasDiscovered::class)->setAction(Crud::PAGE_NEW),
+            ]);
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }
