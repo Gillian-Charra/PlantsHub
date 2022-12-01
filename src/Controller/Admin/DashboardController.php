@@ -47,7 +47,16 @@ class DashboardController extends AbstractDashboardController
         //
         // return $this->render('some/path/my-dashboard.html.twig');
     }
-
+    /*
+    public function configureUserMenu(User $user): UserMenu
+    {
+        // Usually it's better to call the parent method because that gives you a
+        // user menu with some menu items already created ("sign out", "exit impersonation", etc.)
+        // if you prefer to create the user menu from scratch, use: return UserMenu::new()->...
+        return parent::configureUserMenu($user)
+            // you can return an URL with the avatar image
+            ->setAvatarUrl($user->getProfilePicture());
+    }*/
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()

@@ -12,7 +12,7 @@
 
 			{% if app.user %}
 			<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/logout">Se deconnecter de {{ app.user.userIdentifier }}</a></li>
-
+			<li class="user-options-button li-clean"><a class="liens-menu-lateral a-clean" href="/logout"><img class="profile-image" src="/images/avatar/{{ app.user.profilepicture }}"/></a></li>
 
 			{% if app.user.isadmin %}
 			<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/admin">Administration du site</a></li>
@@ -36,10 +36,10 @@
 		</div>
 		<div class="flex-row w-100 accueil">
 			<div class="contain-titre texte-centre">
-				<h1>											
+				<h1 class="titre">											
 					PlantsHub
 				</h1>
-				<p class="presentation">			{% if app.user %}Bonjour {{app.user.name}}!<br/>{% endif %}Decouvre le jeu du jour.</p>
+				<p class="presentation">			{% if app.user %}Bonjour {{app.user.name}} !<br/>{% endif %}Decouvre le jeu du jour.</p>
 				<button class="bouton" onclick="window.location.href = '/play';">JOUER</button>
 			</div>
 		</div>
@@ -51,7 +51,7 @@
 				description
 			</p>
 		</div>
-
+		{% if plants|length >=3 %}
 		<div class="flex-row w-100 color-sec section-demonstration">
 			<div class="w-40 div-demonstration">
 				<img class="w-100" src="/images/plant_images/{{plants[0].image}}">
@@ -80,6 +80,7 @@
 				<div class="paragraphe w-80 margin-lat-10">{{plants[2].descriptionBefore|raw}}</div>
 			</div>
 		</div>
+		{% endif %}
 		<div class="flex-col w-100 color-tert">
 			<h2 class="texte-centre margin-lat-25 margin-top-10 w-50 rw-80 rmargin-lat-10">
 				Inserer Bullshit pedagogique
@@ -100,8 +101,8 @@
 		<div class="conclusion  w-100">
 			<div class="contenu-conclusion flex-row w-100">
 				<div class="texte-conclusion flex-col w-65">
-					<h3 class=" w-80 margin-lat-10 margin-vert-0">Vous avez découvert {{app.user.discoveredCount()}} plantes</h3>
-					<p class="paragraphe w-80 margin-lat-10">Aliquam ut ex ut augue consectetur interdum endrerit imperdiet amet eleifend fringilla.</p>
+					<h3 class=" w-80 margin-lat-10 margin-vert-0">Tu as découvert {{app.user.discoveredCount()}} plantes</h3>
+					<p class="paragraphe w-80 margin-lat-10">Lance une partie pour augmenter ton score.</p>
 				</div>
 				<div class="flex-col w-35 rw-100">
 					<button class="bouton rmargin-lat-10 margin-lat-35" onclick="window.location.href = '/play';">Jouer</button>
@@ -111,15 +112,8 @@
 		</div>
 		{% endif %}
 		<footer class="flex-col w-100 texte-centre">
-			<div class="liens-externes w-30 margin-lat-35 margin-top-10">
-				<span class="fa-brands fa-twitter"></span>
-				<span class="margin-lat-5 fa-brands fa-facebook-f"></span>
-				<span class="fa-brands fa-instagram"></span>
-				<span class="margin-lat-5 fa-brands fa-dribbble"></span>
-				<span class="fa-solid fa-envelope"></span>
-			</div>
 			<div class="credits margin-bot-10 margin-top-5">
-				<p>© UNTITLED | DESIGN: HTML5 UP | DEMO IMAGES: UNSPLASH</p>
+				<p>CE CHEF D'OEUVRE VOUS A ÉTÉ APPORTÉ PAR YOHANN ET GILLIAN MAITRES PHP</p>
 			</div>
 		</footer>
 	</div>

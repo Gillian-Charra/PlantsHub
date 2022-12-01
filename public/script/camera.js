@@ -39,7 +39,7 @@ play.onclick = () => {
     video.play();
     play.classList.add('d-none');
     pause.classList.remove('d-none');
-    document.querySelector("#save").classList.remove("display-no")
+
     return;
   }
   if ('mediaDevices' in navigator && navigator.mediaDevices.getUserMedia) {
@@ -52,7 +52,6 @@ play.onclick = () => {
     startStream(updatedConstraints);
   }
 };
-
 const startStream = async (constraints) => {
   const stream = await navigator.mediaDevices.getUserMedia(constraints);
   handleStream(stream);
@@ -89,6 +88,7 @@ const doScreenshot = () => {
   canvas.getContext('2d').drawImage(video, 0, 0);
   screenshotImage.src = canvas.toDataURL('image/webp');
   screenshotImage.classList.remove('d-none');
+  document.querySelector("#save").classList.remove("display-no")
 
 
 };

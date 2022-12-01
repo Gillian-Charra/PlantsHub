@@ -75,6 +75,12 @@ body{
     font-family: 'Oswald', Helvetica,sans-serif;
     z-index: 2;
 }
+.user-options-button{
+    z-index: 2;
+    top: 0;
+    position: fixed;
+    height: 64px;
+}
 .menu-lateral{
     padding-top: 3%;
     width: 350px;
@@ -120,7 +126,7 @@ body{
     width:25%;
     height:60vh;
 }
-h1::before,h1::after{
+.titre::before,.titre::after{
     background: #fff;
     content: "";
     display: block;

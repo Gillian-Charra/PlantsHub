@@ -30,7 +30,6 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
         $name = $request->request->get('name', '');
 
         $request->getSession()->set(Security::LAST_USERNAME, $name);
-
         return new Passport(
             new UserBadge($name),
             new PasswordCredentials($request->request->get('password', '')),
