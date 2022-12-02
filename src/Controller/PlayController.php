@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\UserHasDiscovered;
+use App\Repository\ElementRepository;
+use App\Repository\FamilyRepository;
 use App\Repository\PlantRepository;
 use App\Repository\UserHasDiscoveredRepository;
 use App\Repository\UserRepository;
@@ -16,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PlayController extends AbstractController
 {   
     #[Route('/', name: 'app_play')]
-    public function index(PlantRepository $repository): Response
+    public function index(PlantRepository $repository,ElementRepository $elementRepository): Response
     {
         return $this->render('play/play.html.twig', [
             //'var'=>$repository->find(1)

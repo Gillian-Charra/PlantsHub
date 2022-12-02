@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Repository\ElementRepository;
+use App\Repository\FamilyRepository;
 use App\Repository\PlantRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -25,10 +27,8 @@ class Plant
     #[ORM\Column]
     private ?int $level = null;
 
-    #[ORM\Column(type: Types::TEXT)]
     private ?string $description_before = null;
 
-    #[ORM\Column(type: Types::TEXT)]
     private ?string $description_after = null;
 
     #[ORM\OneToMany(mappedBy: 'plant', targetEntity: UserHasDiscovered::class, orphanRemoval: true)]
@@ -37,6 +37,9 @@ class Plant
     #[ORM\ManyToOne(inversedBy: 'plants')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Family $family = null;
+
+    #[ORM\Column]
+    private ?bool $display = null;
 
     public function __construct()
     {
@@ -87,30 +90,69 @@ class Plant
         return $this;
     }
 
-    public function getDescriptionBefore(): ?string
+    public function getDescriptionBefore(): ?array
     {
-        return $this->description_before;
+        return $this->descriptionBefore;
     }
 
-    public function setDescriptionBefore(string $description_before): self
+    public function setDescriptionBefore(ElementRepository $elementRepository): ?self
     {
-        $this->description_before = $description_before;
-
+        $this->descriptionBefore= $elementRepository->findBy([
+            'idplant'=>$this->getId(),//symfony a fait fort sur ce coup là
+            'side'=>'0'
+        ],
+        [
+            'ordre'=>'ASC'
+        ]);
         return $this;
     }
-
-    public function getDescriptionAfter(): ?string
+    public function getFullRawDescriptionBefore(): ?string
     {
-        return $this->description_after;
+        $html="";
+        foreach($this->descriptionBefore as $element){
+            if ($element->getLogo()!=null){
+                $html=$html."<img class='logo-illustration' src='/images/illustration_description/".$element->getLogo()."'/> \r\n";
+            }
+            if ($element->getTitle()!=null){
+                $html=$html."<h3 class='titre-description-plante'>".$element->getTitle()."</h3> \r\n";
+            }
+            $html=$html."<p class='description-plante'>".$element->getContent()."</p><br/> \r\n";
+        }
+        return $html;
+
     }
-
-    public function setDescriptionAfter(string $description_after): self
+    public function getDescriptionAfter(): ?array
     {
-        $this->description_after = $description_after;
-
+        return $this->descriptionBefore;
+    }
+    public function setDescriptionAfter(ElementRepository $elementRepository): ?self
+    {
+        $this->descriptionBefore= $elementRepository->findBy([
+            'idplant'=>$this->getId(),//symfony a fait fort sur ce coup là
+            'side'=>'1'
+        ],
+        [
+            'ordre'=>'ASC'
+        ]);
         return $this;
     }
+    public function getFullRawDescriptionAfter(): ?string
+    {
+        $html="";
+        foreach($this->descriptionBefore as $elements){
+            foreach($elements as $element){
+                if ($element["logo"]!=null){
+                    $html+='<img class="logo-illustration" src="'.$element["logo"].'"/> \r\n';
+                }
+                if ($element["title"]!=null){
+                    $html+='<h3 class="titre-description-plante">'.$element["title"].'</h3> \r\n';
+                }
+                $html+='<p class="titre-description-plante">'.$element["content"].'</p><br/> \r\n';
+            }
+        }
+        return $html;
 
+    }
     /**
      * @return Collection<int, UserHasDiscovered>
      */
@@ -149,6 +191,18 @@ class Plant
     public function setFamily(?Family $family): self
     {
         $this->family = $family;
+
+        return $this;
+    }
+
+    public function isDisplay(): ?bool
+    {
+        return $this->display;
+    }
+
+    public function setDisplay(bool $display): self
+    {
+        $this->display = $display;
 
         return $this;
     }

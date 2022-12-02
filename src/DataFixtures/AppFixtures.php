@@ -20,7 +20,7 @@ class AppFixtures extends Fixture
         ];
         $encrypted = password_hash("admin", PASSWORD_BCRYPT, $options);
         $tableauplante = ["coquelicot","Pavot somnifère","Lys"];
-        $tableauImages = ["la chevre.jpg", "la chevre.webp", "MyLogo.PNG"];
+        $tableauImages = ["la chevre.jpg", "pavot-somnifere.jpg", "MyLogo.PNG"];
         $i = 0;
 
         $roles =[];
@@ -43,8 +43,7 @@ class AppFixtures extends Fixture
             $plante->setName($plantName);
             $plante->setImage($tableauImages[$i]);
             $plante->setLevel(mt_rand(1 , 20));
-            $plante->setDescriptionBefore("blabla");
-            $plante->setDescriptionAfter("blabla");
+            $plante->setDisplay(1);
             $plante->setFamily($family);
             $manager->persist($plante);
             $manager->flush();

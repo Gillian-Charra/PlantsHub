@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -21,11 +22,15 @@ class ElementCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextEditorField::new('content'),
+            TextField::new('title'),
+            TextField::new('content'),
+            ImageField::new('logo')
+                ->setUploadDir('public/images/illustration_description')
+                ->setUploadedFileNamePattern('[year]-[month]-[day]_[slug].[extension]')
+                ->setBasePath('images/illustration_description'),
             BooleanField::new('side'),
             IntegerField::new('ordre'),
             AssociationField::new('idplant'),
-            AssociationField::new('idtype'),
         ];
     }
 }

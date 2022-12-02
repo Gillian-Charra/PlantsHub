@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Controller\Admin;
+
+use App\Entity\Element;
 use App\Entity\Family;
 use App\Entity\Plant;
 use App\Entity\User;
@@ -67,6 +69,10 @@ class DashboardController extends AbstractDashboardController
             yield MenuItem::subMenu('Plantes','fas fa-bars')->setSubItems([
                 MenuItem::linkToCrud('Afficher Plantes','fas fa-eye',Plant::class),
                 MenuItem::linkToCrud('Ajouter Plantes','fas fa-plus',Plant::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Descriptions','fas fa-bars')->setSubItems([
+                MenuItem::linkToCrud('Afficher descriptions','fas fa-eye',Element::class),
+                MenuItem::linkToCrud('Ajouter description','fas fa-plus',Element::class)->setAction(Crud::PAGE_NEW),
             ]);
             yield MenuItem::subMenu('Familles de plantes','fas fa-bars')->setSubItems([
                 MenuItem::linkToCrud('Afficher Familles de plantes','fas fa-eye',Family::class),

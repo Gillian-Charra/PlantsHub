@@ -11,6 +11,7 @@
 /node_modules/
 /public/images/plant_images
 !/public/images/plant_images/fixtures
+!/public/images/avatar/imageParDefaut.png
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###

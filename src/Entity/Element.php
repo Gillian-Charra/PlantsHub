@@ -24,16 +24,18 @@ class Element
     #[ORM\Column]
     private ?int $ordre = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Type $idtype = null;
-
     #[ORM\ManyToMany(targetEntity: Plant::class)]
     private Collection $plant;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Plant $idplant = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $title = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $logo = null;
 
     public function __construct()
     {
@@ -81,17 +83,6 @@ class Element
         return $this;
     }
 
-    public function getIdtype(): ?Type
-    {
-        return $this->idtype;
-    }
-
-    public function setIdtype(?Type $idtype): self
-    {
-        $this->idtype = $idtype;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Plant>
@@ -125,6 +116,30 @@ class Element
     public function setIdplant(?Plant $idplant): self
     {
         $this->idplant = $idplant;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(?string $logo): self
+    {
+        $this->logo = $logo;
 
         return $this;
     }
