@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Element;
 use App\Entity\Family;
 use App\Entity\Plant;
+use App\Entity\PlantImages;
 use App\Entity\User;
 use App\Entity\UserHasDiscovered;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -73,6 +74,10 @@ class DashboardController extends AbstractDashboardController
             yield MenuItem::subMenu('Descriptions','fas fa-bars')->setSubItems([
                 MenuItem::linkToCrud('Afficher descriptions','fas fa-eye',Element::class),
                 MenuItem::linkToCrud('Ajouter description','fas fa-plus',Element::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Image plantes','fas fa-bars')->setSubItems([
+                MenuItem::linkToCrud('Afficher images plantes','fas fa-eye',PlantImages::class),
+                MenuItem::linkToCrud('Ajouter image plante','fas fa-plus',PlantImages::class)->setAction(Crud::PAGE_NEW),
             ]);
             yield MenuItem::subMenu('Familles de plantes','fas fa-bars')->setSubItems([
                 MenuItem::linkToCrud('Afficher Familles de plantes','fas fa-eye',Family::class),

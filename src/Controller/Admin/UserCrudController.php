@@ -25,7 +25,7 @@ class UserCrudController extends AbstractCrudController
             BooleanField::new('is_admin'),
             ImageField::new('profile_picture')
                 ->setUploadDir('public/images/avatar')
-                ->setUploadedFileNamePattern('[year]-[month]-[day]_[slug].[extension]')
+                ->setUploadedFileNamePattern('[year]-[month]-[day]_[slug]_[randomhash].[extension]')
                 ->setBasePath('images/avatar')
                 ->setRequired(false)
                 ->setEmptyData(null)

@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Length;
 
 #[ORM\Entity(repositoryClass: PlantRepository::class)]
 class Plant
@@ -20,9 +21,6 @@ class Plant
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $image = null;
 
     #[ORM\Column]
     private ?int $level = null;
@@ -41,9 +39,13 @@ class Plant
     #[ORM\Column]
     private ?bool $display = null;
 
+    #[ORM\OneToMany(mappedBy: 'plant', targetEntity: PlantImages::class)]
+    private Collection $plantImages;
+
     public function __construct()
     {
         $this->usersHasDiscovered = new ArrayCollection();
+        $this->plantImages = new ArrayCollection();
     }
     public function __toString()
     {
@@ -66,17 +68,6 @@ class Plant
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
 
     public function getLevel(): ?int
     {
@@ -203,6 +194,41 @@ class Plant
     public function setDisplay(bool $display): self
     {
         $this->display = $display;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PlantImages>
+     */
+    public function getImage()
+    {
+        $images=$this->plantImages;
+        return $images[random_int(0,count($images)-1)]->getImage();
+    }
+    public function getPlantImages(): Collection
+    {
+        return $this->plantImages;
+    }
+
+    public function addPlantImage(PlantImages $plantImage): self
+    {
+        if (!$this->plantImages->contains($plantImage)) {
+            $this->plantImages->add($plantImage);
+            $plantImage->setPlant($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlantImage(PlantImages $plantImage): self
+    {
+        if ($this->plantImages->removeElement($plantImage)) {
+            // set the owning side to null (unless already changed)
+            if ($plantImage->getPlant() === $this) {
+                $plantImage->setPlant(null);
+            }
+        }
 
         return $this;
     }

@@ -78,15 +78,19 @@ body{
 .user-options-button{
     z-index: 2;
     top: 0;
-    position: fixed;
+    transition: none;
+}
+.profile-image {
     height: 64px;
 }
-
-.menu-lateral{
-    padding-top: 3%;
+.w-350px{
     width: 350px;
+
+}
+.menu-lateral{
     z-index: 2;
     line-height: 1.65em;
+    white-space: nowrap;
 }
 
 .menu-lateral ul > li {
@@ -103,7 +107,7 @@ body{
 
         .menu-lateral ul > li > a {
             border: 0;
-            color: white;
+            color: white !important;
             display: block;
             font-size: 0.8em;
             letter-spacing: 0.225em;
@@ -182,7 +186,10 @@ h3{
 .div-demonstration {
     height: 750 px;
 }
-
+.logo-illustration{
+    justify-content: center;
+    height: 64px;
+}
 
 .bouton{
     border: none;
@@ -243,19 +250,15 @@ footer{
 .liens-externes{
     font-size: larger;
 }
-.profile-image {
-    float: left;
-    width: calc(33.333% - 1rem);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 3rem;
-}
+
  
 .portrait{
     width: 120px;
     height: 120px;
     border-radius: 50%;
+}
+.message-preventif{
+    letter-spacing: normal;
 }
 @media screen and (max-width: 1000px) {
     body{
@@ -287,9 +290,6 @@ footer{
     .div-demonstration{
         width: 100%;
         padding-bottom: 10%;
-    }
-    .div-demonstration img{
-        height: 100%;
     }
     .section-demonstration{
         flex-direction: column;

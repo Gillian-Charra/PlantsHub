@@ -8,12 +8,14 @@
 
 		{% block ul %}
 		<ul>
+			
+			<li class="user-options-button li-clean"><a class="a-clean" href="/profile-settings"><img class="profile-image" src="/images/avatar/{% if app.user %}{{ app.user.profilepicture }}{% else %}imageParDefaut.png{% endif %}"/></a></li>
+			
 			<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/accueil">Accueil</a></li>
 
 			{% if app.user %}
 			<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/logout">Se deconnecter de {{ app.user.userIdentifier }}</a></li>
-			<li class="user-options-button li-clean"><a class="liens-menu-lateral a-clean" href="/profile-settings"><img class="profile-image" src="/images/avatar/{{ app.user.profilepicture }}"/></a></li>
-
+			
 			{% if app.user.isadmin %}
 			<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/admin">Administration du site</a></li>
 
@@ -116,6 +118,8 @@
 		<footer class="flex-col w-100 texte-centre">
 			<div class="credits margin-bot-5 margin-top-10">
 				<p>CE CHEF D'OEUVRE VOUS A ÉTÉ APPORTÉ PAR YOHANN ET GILLIAN MAITRES PHP</p>
+				<p class="message-preventif">Ce site réspectueux de l'environnement a été en grande partie réalisé avec du css recyclé toi aussi fais un geste pour l'environnement en recyclant les déchets chez toi.</p>
+
 			</div>
 		</footer>
 	</div>

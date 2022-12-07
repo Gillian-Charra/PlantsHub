@@ -26,7 +26,7 @@ class ElementCrudController extends AbstractCrudController
             TextField::new('content'),
             ImageField::new('logo')
                 ->setUploadDir('public/images/illustration_description')
-                ->setUploadedFileNamePattern('[year]-[month]-[day]_[slug].[extension]')
+                ->setUploadedFileNamePattern('[year]-[month]-[day]_[slug]_[randomhash].[extension]')
                 ->setBasePath('images/illustration_description'),
             BooleanField::new('side'),
             IntegerField::new('ordre'),

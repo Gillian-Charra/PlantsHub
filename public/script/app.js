@@ -2,11 +2,11 @@ function menuVertical() {
     var navbar = document.getElementById('navbar-laterale');
     var body = document.getElementById('content');
     navbar.classList.remove("w-0");
-    navbar.classList.add("menu-lateral");
+    navbar.classList.add("w-350px");
     body.classList.add("opacity-30");
     body.addEventListener('click', function() {
         navbar.classList.add("w-0");
-        navbar.classList.remove("menu-lateral");
+        navbar.classList.remove("w-350px");
         body.classList.remove("opacity-30");
     });
 }

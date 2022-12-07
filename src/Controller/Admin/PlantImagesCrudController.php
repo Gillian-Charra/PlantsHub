@@ -2,7 +2,8 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Plant;
+use App\Entity\PlantImages;
+use App\Repository\PlantImagesRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -11,19 +12,21 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class PlantCrudController extends AbstractCrudController
+class PlantImagesCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Plant::class;
+        return PlantImages::class;
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name'),
-            IntegerField::new('level'),
-
+            AssociationField::new('plant'),
+            ImageField::new('image')
+                ->setUploadDir('public/images/plant_images')
+                ->setUploadedFileNamePattern('[slug]_[randomhash].[extension]')
+                ->setBasePath('images/plant_images'),
         ];
     }
 }
