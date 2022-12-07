@@ -15,6 +15,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[UniqueEntity(fields: ['name'], message: 'There is already an account with this name')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    # Coefficient de gestion de lvl
+    const COEFF = 30;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -205,5 +207,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->level = $level;
 
         return $this;
+    }
+    public function XPmanager(int $XP, int $level): ?float
+    {
+        if ($XP >= ($level * COEFF))
+        {
+            $level = $level++; 
+        }
+        return $level;
     }
 }
