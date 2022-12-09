@@ -20,8 +20,9 @@ class PlayController extends AbstractController
     #[Route('/', name: 'app_play')]
     public function index(PlantRepository $repository,ElementRepository $elementRepository): Response
     {
+        
         return $this->render('play/play.html.twig', [
-            //'var'=>$repository->find(1)
+            'plant'=>$repository->getRandomPlants(1,true,$this->getUser())[0]
         ]);
     }
     #[Route('/apiphoto', name: 'app_api_photo')]
@@ -29,8 +30,8 @@ class PlayController extends AbstractController
     {
         $UHDentity= new UserHasDiscovered; 
         $data = $_POST['image'];
-        $user= $userrepository->find($_POST['user']);
-        $plant = $plantrepository->find($_POST['plant']);
+        $user= $this->getUser();
+        $plant = $plantrepository->findOneBy(["name"=>$_POST['plant']]);
         $latitude = $_POST['latitude'];
         $longitude = $_POST['longitude'];
         $date=date('Y-m-d');

@@ -22,7 +22,7 @@ class AppFixtures extends Fixture
         ];
         $encrypted = password_hash("admin", PASSWORD_BCRYPT, $options);
 
-        $roles =[];
+    $roles =[/*"ROLE_ADMIN"*/];
         $superAdmin = new user();
         $superAdmin -> setName("Admin");
         $superAdmin -> setPassword($encrypted);
@@ -111,7 +111,8 @@ class AppFixtures extends Fixture
             $tableauDescriptionsAfter[$plant["name"]]=$plant["after"];
         }
         
-        $familiesName=["Hors-categorie",
+        $familiesName=[
+        "Hors-categorie",
         "Liliaceae",
         "Papaveraceae",
         "Solanaceae",

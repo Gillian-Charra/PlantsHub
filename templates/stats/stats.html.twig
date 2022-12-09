@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+	{% block head %}
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/normalize.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/helpers.css') }}">
+
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/stats.css') }}">
+                <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+            <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/styleCam.css') }}">
+    {% endblock %}
+
+		{% block ul %}
+		<ul>
+            <li class="user-options-button li-clean"><a class="a-clean" href="/profile-settings"><img class="profile-image" src="{% if app.user %}/images/avatar/{{ app.user.profilepicture }}{% else %}/images/decoration/unidentified.png{% endif %}"/></a></li>
+			<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/accueil">Accueil</a></li>
+			{% if app.user %}
+			    <li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/logout">Se deconnecter de {{ app.user.userIdentifier }}</a></li>
+			{% if app.user.isadmin %}
+			    <li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/admin">Administration du site</a></li>
+			{% endif %}
+			{% else %}
+				<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/login">Se connecter</a></li>
+            	<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/register">S'enregistrer</a></li>
+			{% endif %}
+		</ul>
+       {% endblock %}
+{% block body %}
+<div class="container">
+{% for famille in familles %}
+  <div class="hs__wrapper">
+    <div class="hs__header">
+      <h2 class="hs__headline">{{famille[0].family.name}}
+      </h2>
+      <div class="hs__arrows"><a class="arrow disabled arrow-prev"></a><a class="arrow arrow-next"></a></div>
+    </div>
+    <ul class="hs">
+        {% for plante in famille %}
+      <li class="hs__item"> 
+        <div class="hs__item__image__wrapper">
+          <img class="hs__item__image" {% if (matchs[plante.name]|length==0) %}style="filter: grayscale(100%);"{% endif %} src="/images/plant_images/{{plante.image}}" alt="">
+        </div>
+        <div class="hs__item__description"><span class="hs__item__title">{{plante.name}}</span><span class="hs__item__subtitle">{% if (matchs[plante.name]|length>=1) %}Trouvé - {% endif %}Level:{{plante.level}}</span></div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+</div>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+<script src="{{ asset('script/stats.js') }}"></script>
+<script src="{{ asset('script/app.js') }}"></script>
+
+{% endblock %}

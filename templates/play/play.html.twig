@@ -13,21 +13,16 @@
 
 		{% block ul %}
 		<ul>
-        <li class="user-options-button li-clean"><a class="a-clean" href="/profile-settings"><img class="profile-image" src="/images/avatar/{% if app.user %}{{ app.user.profilepicture }}{% else %}imageParDefaut.png{% endif %}"/></a></li>
+            <li class="user-options-button li-clean"><a class="a-clean" href="/profile-settings"><img class="profile-image" src="{% if app.user %}/images/avatar/{{ app.user.profilepicture }}{% else %}/images/decoration/unidentified.png{% endif %}"/></a></li>
 			<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/accueil">Accueil</a></li>
-
 			{% if app.user %}
-			<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/logout">Se deconnecter de {{ app.user.userIdentifier }}</a></li>
-
-
+			    <li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/logout">Se deconnecter de {{ app.user.userIdentifier }}</a></li>
 			{% if app.user.isadmin %}
-			<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/admin">Administration du site</a></li>
-
+			    <li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/admin">Administration du site</a></li>
 			{% endif %}
 			{% else %}
 				<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/login">Se connecter</a></li>
             	<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/register">S'enregistrer</a></li>
-
 			{% endif %}
 		</ul>
        {% endblock %}
@@ -42,7 +37,7 @@
         </select>
     </div>
 
-    <img class="screenshot-image d-none" alt="">
+    <img id="screenshot-image" class="screenshot-image d-none" alt="">
 
     <div class="controls">
         <button class="btn btn-danger play" title="Play"><i data-feather="play-circle"></i></button>
@@ -50,11 +45,24 @@
         <button class="btn btn-outline-success screenshot d-none" title="ScreenShot"><i data-feather="image"></i></button>
     </div>
 </div>
-<button id="save" class="display-no"></button>
+<img src="{{ asset('images/decoration/validation.png') }}" id="save" class="display-no validation-button-image" onclick="save()"></button>
+   
+   <!--A changer-->
     <div id="latitude" class="display-no"></div>
     <div id="longitude" class="display-no"></div>
-    <div id="user-id" class="display-no">{{ app.user.id }}</div>
     <div id="plant-id" class="display-no">1</div>
+    <div id="show-plant-info-btn" class="fleche margin-vert-25 fa-solid fa-arrow-left top-fix" onclick="afficherPlante()"></div>
+    <!--image-->
+        <div id="plant-info" class="hidden-left transition-movement top-fix flex-row w-100 color-sec section-demonstration h-100">
+			<div class="w-40 div-demonstration">
+				<img class="w-100" src="/images/plant_images/{{plant.image}}">
+			</div>
+			<div class="w-60 div-demonstration">
+				<h3 id="plant-title" class="titre-demonstration w-60 margin-lat-10 margin-top-15">{{plant.name}}</h3>
+				<div class="paragraphe w-80 margin-lat-10 ">{{plant.FullRawDescriptionBefore|raw}}</div>
+			</div>
+            <div id="hide-plant-info-btn" class="fleche display-no margin-vert-25 fa-solid fa-arrow-left right-0" onclick="cacherPlante()"></div>
+	    </div>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="https://unpkg.com/feather-icons"></script>
 <script src="{{ asset('script/camera.js') }}"></script>

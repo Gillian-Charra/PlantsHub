@@ -695,6 +695,19 @@
   right: 0;
 }
 
+.top-fix {
+  position: fixed;
+  top: 0;
+}
+
+.left-0 {
+  left: 0;
+}
+
+.right-0 {
+  right: 0;
+}
+
 .texte-centre {
   text-align: center;
 }
@@ -738,6 +751,10 @@
 
 .troisieme-plan {
   z-index: 0;
+}
+
+.z-index-2 {
+  z-index: 2;
 }
 
 @media screen and (max-width: 1000px) {
