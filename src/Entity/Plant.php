@@ -25,6 +25,10 @@ class Plant
 {
     use FromArrayTrait;
 
+    #xp de base
+    const XP_BASE = 10;
+    # Coefficient définissant l'xp donnée par une plante
+    const COEFF = 1.5;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -52,6 +56,9 @@ class Plant
 
     #[ORM\OneToMany(mappedBy: 'plant', targetEntity: PlantImages::class)]
     private Collection $plantImages;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $latinName = null;
 
     public function __construct()
     {
@@ -91,7 +98,14 @@ class Plant
 
         return $this;
     }
+ 
+    public function xpgiven(): ?float
+    {
+        $plantLevel = getLevel();
+        $xpgiven = (XP_base*(1+0.2*($plantLevel/COEFF)));
+        return $xpgiven;
 
+    }
     public function getDescriptionBefore(): ?array
     {
         return $this->descriptionBefore;
