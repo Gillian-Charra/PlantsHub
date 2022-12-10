@@ -101,8 +101,8 @@ class Plant
  
     public function xpgiven(): ?float
     {
-        $plantLevel = getLevel();
-        $xpgiven = (XP_base*(1+0.2*($plantLevel/COEFF)));
+        $plantLevel = $this->getLevel();
+        $xpgiven = ($this->XP_base*(1+0.2*($plantLevel/$this->COEFF)));
         return $xpgiven;
 
     }
