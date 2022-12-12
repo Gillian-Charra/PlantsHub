@@ -11,9 +11,20 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\Length;
 
+trait FromArrayTrait {
+    public static function fromArray(array $data = []): self {
+        foreach (get_object_vars($obj = new self) as $property => $default) {
+            $obj->$property = $data[$property] ?? $default;
+        }
+        return $obj;
+    }
+}
+
 #[ORM\Entity(repositoryClass: PlantRepository::class)]
 class Plant
 {
+    use FromArrayTrait;
+
     #xp de base
     const XP_BASE = 10;
     # Coefficient définissant l'xp donnée par une plante
@@ -84,14 +95,14 @@ class Plant
 
         return $this;
     }
+ 
     public function xpgiven(): ?float
     {
-        $plantLevel = getLevel();
-        $xpgiven = (XP_base*(1+0.2*($plantLevel/COEFF)));
+        $plantLevel = $this->getLevel();
+        $xpgiven = ($this->XP_base*(1+0.2*($plantLevel/$this->COEFF)));
         return $xpgiven;
 
     }
-
     public function getDescriptionBefore(): ?array
     {
         return $this->descriptionBefore;
@@ -129,7 +140,7 @@ class Plant
     }
     public function setDescriptionAfter(ElementRepository $elementRepository): ?self
     {
-        $this->descriptionBefore= $elementRepository->findBy([
+        $this->descriptionAfter= $elementRepository->findBy([
             'idplant'=>$this->getId(),//symfony a fait fort sur ce coup là
             'side'=>'1'
         ],
@@ -141,7 +152,7 @@ class Plant
     public function getFullRawDescriptionAfter(): ?string
     {
         $html="";
-        foreach($this->descriptionBefore as $elements){
+        foreach($this->descriptionAfter as $elements){
             foreach($elements as $element){
                 if ($element["logo"]!=null){
                     $html+='<img class="logo-illustration" src="'.$element["logo"].'"/> \r\n';
@@ -153,14 +164,18 @@ class Plant
             }
         }
         return $html;
-
     }
+
     /**
      * @return Collection<int, UserHasDiscovered>
      */
     public function getUsersHasDiscovered(): Collection
     {
         return $this->usersHasDiscovered;
+    }
+    public function getUHD($id): int
+    {
+        return $id;
     }
 
     public function addUsersHasDiscovered(UserHasDiscovered $usersHasDiscovered): self

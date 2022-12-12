@@ -1,3 +1,7 @@
+body{
+    background-color: #4a523d;
+    color: aliceblue;
+}
 .screenshot-image {
     width: 150px;
     height: 90px;
@@ -6,7 +10,7 @@
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
     position: absolute;
     bottom: 5px;
-    left: 10px;
+    right: 10px;
     background: white;
 }
 
@@ -15,13 +19,13 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    overflow: hidden;
     position: relative;
 }
 
 video {
-    width: 100%;
-    background: rgba(0, 0, 0, 0.2);
+    height: 100vh;
 }
 
 .video-options {
@@ -49,6 +53,11 @@ video {
 
 .controls > button:hover svg {
     color: white !important;
+}
+.validation-button-image{
+    position: fixed;
+    height: 100px;
+    bottom: 0;
 }
 
 @media (min-width: 300px) and (max-width: 400px) {
@@ -105,4 +114,21 @@ video {
 
 .controls > button:hover svg {
     color: white;
+}
+.hidden-left{
+    left: -100vw;
+
+}
+.fleche{
+    margin: 45vh 30px 0px 30px;
+    font-size:75px;
+}
+.div-mouvement{
+    top: 0;
+    position: fixed;
+}
+.transition-movement{
+    transition-duration: 0.5s;
+    transition-property: all;
+    transition-timing-function:ease;
 }

@@ -9,7 +9,7 @@
 		{% block ul %}
 		<ul>
 			
-			<li class="user-options-button li-clean"><a class="a-clean" href="/profile-settings"><img class="profile-image" src="/images/avatar/{% if app.user %}{{ app.user.profilepicture }}{% else %}imageParDefaut.png{% endif %}"/></a></li>
+			<li class="user-options-button li-clean"><a class="a-clean" href="/profile-settings"><img class="profile-image" src="{% if app.user %}/images/avatar/{{ app.user.profilepicture }}{% else %}/images/decoration/unidentified.png{% endif %}"/></a></li>
 			
 			<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/accueil">Accueil</a></li>
 
@@ -110,7 +110,7 @@
 				</div>
 				<div class="flex-col w-35 rw-100">
 					<button class="bouton rmargin-lat-10 margin-lat-35" onclick="window.location.href = '/play';">Jouer</button>
-					<button class="bouton  margin-top-5  margin-lat-35 rmargin-lat-10 bouton-learn-more onclick="window.location.href = '/stats';"">Voir mes statistiques</button>
+					<button class="bouton  margin-top-5  margin-lat-35 rmargin-lat-10 bouton-learn-more" onclick="window.location.href = '/stats';">Voir mes statistiques</button>
 				</div>
 			</div>
 		</div>

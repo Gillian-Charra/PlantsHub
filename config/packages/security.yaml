@@ -37,9 +37,11 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        #- { path: ^/, requires_channel: http }
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/play, roles: ROLE_USER }
+        - { path: ^/, requires_channel: http }
+        #- { path: ^/admin, roles: ROLE_ADMIN }
+
+        - { path: ^/profile-settings, roles: ROLE_USER }
 
 when@test:
     security:

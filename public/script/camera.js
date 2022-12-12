@@ -4,9 +4,12 @@ const controls = document.querySelector('.controls');
 const cameraOptions = document.querySelector('.video-options>select');
 const video = document.querySelector('video');
 const canvas = document.querySelector('canvas');
-const screenshotImage = document.querySelector('img');
+const screenshotImage = document.querySelector('#screenshot-image');
 const buttons = [...controls.querySelectorAll('button')];
 let streamStarted = false;
+const showBtn = document.getElementById('show-plant-info-btn');
+const hideBtn = document.getElementById('hide-plant-info-btn');
+const plantInfo = document.getElementById('plant-info');
 
 const [play, pause, screenshot] = buttons;
 
@@ -86,34 +89,43 @@ const doScreenshot = () => {
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
   canvas.getContext('2d').drawImage(video, 0, 0);
-  screenshotImage.src = canvas.toDataURL('image/webp');
+  screenshotImage.src = canvas.toDataURL('image/webp');/**/
   screenshotImage.classList.remove('d-none');
   document.querySelector("#save").classList.remove("display-no")
 
 
 };
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(function (position) {
-      document.getElementById('latitude').innerHTML= position.coords.latitude
-      document.getElementById('longitude').innerHTML= position.coords.longitude
-  })
-  } 
-$("#save").click(function()  {
 
-  console.log('mesv')
-  console.log(canvas.toDataURL('image/webp'))
+$("#save").click(function save()  {
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
   $.ajax({
      type: "POST",
      url: 'apiphoto',
      dataType: 'text',
      data:  {
     image : canvas.toDataURL('image/webp'),
-    user: document.getElementById('user-id').innerHTML,
-    plant: document.getElementById('plant-id').innerHTML,
-    longitude: document.getElementById('longitude').innerHTML,
-    latitude: document.getElementById('latitude').innerHTML,
+    plant:  document.getElementById('plant-title').innerHTML,
+    longitude: position.coords.longitude,
+    latitude: position.coords.latitude,
     }
   });
+})
+} 
 });
+
+function afficherPlante(){
+  showBtn.classList.add("display-no");
+  hideBtn.classList.remove("display-no");
+  plantInfo.classList.remove("hidden-left");
+  plantInfo.classList.add("left-0");
+}
+function cacherPlante(){
+  hideBtn.classList.add("display-no");
+  showBtn.classList.remove("display-no");
+  plantInfo.classList.add("hidden-left");
+  plantInfo.classList.remove("left-0");
+}
 pause.onclick = pauseStream;
 screenshot.onclick = doScreenshot;

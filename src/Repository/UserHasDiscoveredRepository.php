@@ -38,6 +38,12 @@ class UserHasDiscoveredRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findMatch(string $user,string $plante){
+        $response=$this->findBy(["user"=>$user,"plant"=>$plante]);
+        //dd($response);
+        return $response;
+    }
+
 
 //    /**
 //     * @return UserHasDiscovered[] Returns an array of UserHasDiscovered objects
