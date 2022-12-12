@@ -46,9 +46,6 @@ class Plant
     #[ORM\OneToMany(mappedBy: 'plant', targetEntity: PlantImages::class)]
     private Collection $plantImages;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $latinName = null;
-
     public function __construct()
     {
         $this->usersHasDiscovered = new ArrayCollection();

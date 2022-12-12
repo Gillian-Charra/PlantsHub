@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Form\UserType;
+use App\Entity\User;
+use App\Repository\UserRepository;
 use App\Repository\ElementRepository;
 use App\Repository\PlantRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,6 +30,23 @@ class AccueilController extends AbstractController
         }
         return $this->render('accueil/index.html.twig', [
             'plants'=> $plantsALaUne,
+        ]);
+    }
+    #[Route("/edit" , name:"user_edit")]
+    public function edit(Request $request): Response
+    {
+        $user = $this->getUser();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            if ($form->getData() != getPassword())
+            {
+                $user = $form->get("Password")->getData();
+            }
+        }
+        return $this->render('registration/editPassword.html.twig', [
+            'editForm' => $form->createView(),
         ]);
     }
 
