@@ -31,5 +31,13 @@ class StatsController extends AbstractController
                 'matchs'=>$matchs
         ]);
     }
+    #[Route('/api/descriptionAfter/{idplante}', name: 'app_api_stats_descAftr')]
+    public function getFichePlante($idplante,PlantRepository $plantrepository,ElementRepository $elementRepository)
+    {
+        $plante=$plantrepository->find($idplante)->setDescriptionAfter($elementRepository);
+        return $this->json($plante->getFichePlante());
+
+    }
+  
 
 }

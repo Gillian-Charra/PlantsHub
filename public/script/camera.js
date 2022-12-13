@@ -96,7 +96,7 @@ const doScreenshot = () => {
 
 };
 
-$("#save").click(function save()  {
+$("#save").click(function ()  {
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -109,6 +109,11 @@ $("#save").click(function save()  {
     plant:  document.getElementById('plant-title').innerHTML,
     longitude: position.coords.longitude,
     latitude: position.coords.latitude,
+    },
+    success: function(d){
+      d=JSON.parse(d)
+      document.getElementById("fiche-reussite").innerHTML=`<h2>Félicitation tu as découvert une nouvelle plante:${d.plantName}</h2><img src="/images/photo/${d.filename}"/>${d.fichePlanteAfter}` ; 
+      document.getElementById("fiche-reussite").classList.remove("hidden-top");
     }
   });
 })

@@ -59,3 +59,29 @@ $.each( instance, function(key, value) {
   }
   
 });
+async function jsonFetch(url){
+  const response = await fetch(url, {
+      headers:{
+          Accept:'application/json',
+      },
+  })
+  if (response.status===204){
+      return null;
+  }
+  if (response.ok) {
+      return await response.json()
+  }
+  throw response
+}
+async function getDescriptionPopUp(planteId){
+  const popup=document.getElementById('popup');
+  const body=document.getElementById('container');
+  popup.innerHTML=await jsonFetch(`/stats/api/descriptionAfter/${planteId}`);
+  popup.classList.remove('display-no');
+  body.classList.add("opacity-30");
+  body.addEventListener('click', function() {
+    popup.classList.add('display-no');
+    body.classList.remove("opacity-30");
+  });
+
+}

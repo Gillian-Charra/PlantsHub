@@ -25,6 +25,9 @@ $ecart:5;
   .margin-bot-#{($ecart* $i)}{
     margin-bottom:$ecart*$i*1%;
   }
+  .padding-#{($ecart* $i)}{
+    padding:$ecart*$i*1%;
+  }
 }
 .fix{
     position: fixed;

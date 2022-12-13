@@ -28,6 +28,10 @@
   margin-bottom: 0%;
 }
 
+.padding-0 {
+  padding: 0%;
+}
+
 .w-5 {
   width: 5%;
 }
@@ -56,6 +60,10 @@
 
 .margin-bot-5 {
   margin-bottom: 5%;
+}
+
+.padding-5 {
+  padding: 5%;
 }
 
 .w-10 {
@@ -88,6 +96,10 @@
   margin-bottom: 10%;
 }
 
+.padding-10 {
+  padding: 10%;
+}
+
 .w-15 {
   width: 15%;
 }
@@ -116,6 +128,10 @@
 
 .margin-bot-15 {
   margin-bottom: 15%;
+}
+
+.padding-15 {
+  padding: 15%;
 }
 
 .w-20 {
@@ -148,6 +164,10 @@
   margin-bottom: 20%;
 }
 
+.padding-20 {
+  padding: 20%;
+}
+
 .w-25 {
   width: 25%;
 }
@@ -176,6 +196,10 @@
 
 .margin-bot-25 {
   margin-bottom: 25%;
+}
+
+.padding-25 {
+  padding: 25%;
 }
 
 .w-30 {
@@ -208,6 +232,10 @@
   margin-bottom: 30%;
 }
 
+.padding-30 {
+  padding: 30%;
+}
+
 .w-35 {
   width: 35%;
 }
@@ -236,6 +264,10 @@
 
 .margin-bot-35 {
   margin-bottom: 35%;
+}
+
+.padding-35 {
+  padding: 35%;
 }
 
 .w-40 {
@@ -268,6 +300,10 @@
   margin-bottom: 40%;
 }
 
+.padding-40 {
+  padding: 40%;
+}
+
 .w-45 {
   width: 45%;
 }
@@ -296,6 +332,10 @@
 
 .margin-bot-45 {
   margin-bottom: 45%;
+}
+
+.padding-45 {
+  padding: 45%;
 }
 
 .w-50 {
@@ -328,6 +368,10 @@
   margin-bottom: 50%;
 }
 
+.padding-50 {
+  padding: 50%;
+}
+
 .w-55 {
   width: 55%;
 }
@@ -356,6 +400,10 @@
 
 .margin-bot-55 {
   margin-bottom: 55%;
+}
+
+.padding-55 {
+  padding: 55%;
 }
 
 .w-60 {
@@ -388,6 +436,10 @@
   margin-bottom: 60%;
 }
 
+.padding-60 {
+  padding: 60%;
+}
+
 .w-65 {
   width: 65%;
 }
@@ -416,6 +468,10 @@
 
 .margin-bot-65 {
   margin-bottom: 65%;
+}
+
+.padding-65 {
+  padding: 65%;
 }
 
 .w-70 {
@@ -448,6 +504,10 @@
   margin-bottom: 70%;
 }
 
+.padding-70 {
+  padding: 70%;
+}
+
 .w-75 {
   width: 75%;
 }
@@ -476,6 +536,10 @@
 
 .margin-bot-75 {
   margin-bottom: 75%;
+}
+
+.padding-75 {
+  padding: 75%;
 }
 
 .w-80 {
@@ -508,6 +572,10 @@
   margin-bottom: 80%;
 }
 
+.padding-80 {
+  padding: 80%;
+}
+
 .w-85 {
   width: 85%;
 }
@@ -536,6 +604,10 @@
 
 .margin-bot-85 {
   margin-bottom: 85%;
+}
+
+.padding-85 {
+  padding: 85%;
 }
 
 .w-90 {
@@ -568,6 +640,10 @@
   margin-bottom: 90%;
 }
 
+.padding-90 {
+  padding: 90%;
+}
+
 .w-95 {
   width: 95%;
 }
@@ -596,6 +672,10 @@
 
 .margin-bot-95 {
   margin-bottom: 95%;
+}
+
+.padding-95 {
+  padding: 95%;
 }
 
 .w-100 {
@@ -628,6 +708,10 @@
   margin-bottom: 100%;
 }
 
+.padding-100 {
+  padding: 100%;
+}
+
 .w-105 {
   width: 105%;
 }
@@ -656,6 +740,10 @@
 
 .margin-bot-105 {
   margin-bottom: 105%;
+}
+
+.padding-105 {
+  padding: 105%;
 }
 
 .fix {

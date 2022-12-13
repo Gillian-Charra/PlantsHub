@@ -1,134 +1,142 @@
-body{
-    background-color: #4a523d;
-    color: aliceblue;
+body {
+  background-color: #4a523d;
+  color: aliceblue;
 }
+
 .screenshot-image {
-    width: 150px;
-    height: 90px;
-    border-radius: 4px;
-    border: 2px solid whitesmoke;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-    position: absolute;
-    bottom: 5px;
-    right: 10px;
-    background: white;
+  width: 150px;
+  height: 90px;
+  border-radius: 4px;
+  border: 2px solid whitesmoke;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  background: white;
 }
 
 .display-cover {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
 }
 
 video {
-    height: 100vh;
+  height: 100vh;
 }
 
 .video-options {
-    position: absolute;
-    left: 20px;
-    top: 30px;
+  position: absolute;
+  left: 20px;
+  top: 30px;
 }
 
 .controls {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    display: flex;
-    margin-right: 10%;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  display: flex;
+  margin-right: 10%;
 }
 
 .controls > button {
-    width: 45px;
-    height: 45px;
-    text-align: center;
-    border-radius: 100%;
-    margin: 0 6px;
-    background: transparent;
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  border-radius: 100%;
+  margin: 0 6px;
+  background: transparent;
 }
 
 .controls > button:hover svg {
-    color: white !important;
+  color: white !important;
 }
-.validation-button-image{
-    position: fixed;
-    height: 100px;
-    bottom: 0;
+
+.validation-button-image {
+  position: fixed;
+  height: 100px;
+  bottom: 0;
 }
 
 @media (min-width: 300px) and (max-width: 400px) {
-    .controls {
-        flex-direction: column;
-    }
-
-    .controls button {
-        margin: 5px 0 !important;
-    }
+  .controls {
+    flex-direction: column;
+  }
+  .controls button {
+    margin: 5px 0 !important;
+  }
 }
-
 .controls > button > svg {
-    height: 20px;
-    width: 18px;
-    text-align: center;
-    margin: 0 auto;
-    padding: 0;
-
+  height: 20px;
+  width: 18px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
 }
 
 .controls button:nth-child(1) {
-    border: 2px solid #D2002E;
+  border: 2px solid #D2002E;
 }
 
 .controls button:nth-child(1) svg {
-    color: #D2002E;
+  color: #D2002E;
 }
 
 .controls button:nth-child(2) {
-    border: 2px solid #008496;
+  border: 2px solid #008496;
 }
 
 .controls button:nth-child(2) svg {
-    color: #008496;
+  color: #008496;
 }
 
 .controls button:nth-child(3) {
-    border: 2px solid #00B541;
+  border: 2px solid #00B541;
 }
 
 .controls button:nth-child(3) svg {
-    color: #00B541;
+  color: #00B541;
 }
 
 .controls > button {
-    width: 45px;
-    height: 45px;
-    text-align: center;
-    border-radius: 100%;
-    margin: 0 6px;
-    background: transparent;
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  border-radius: 100%;
+  margin: 0 6px;
+  background: transparent;
 }
 
 .controls > button:hover svg {
-    color: white;
+  color: white;
 }
-.hidden-left{
-    left: -100vw;
 
+.hidden-left {
+  left: -100vw;
 }
-.fleche{
-    margin: 45vh 30px 0px 30px;
-    font-size:75px;
+
+.hidden-top {
+  top: -100vh;
 }
-.div-mouvement{
-    top: 0;
-    position: fixed;
+
+.fleche {
+  margin: 45vh 30px 0px 30px;
+  font-size: 75px;
 }
-.transition-movement{
-    transition-duration: 0.5s;
-    transition-property: all;
-    transition-timing-function:ease;
+
+.div-mouvement {
+  top: 0;
+  position: fixed;
 }
+
+.transition-movement {
+  transition-duration: 0.5s;
+  transition-property: all;
+  transition-timing-function: ease;
+}
+
+/*# sourceMappingURL=styleCam.css.map */

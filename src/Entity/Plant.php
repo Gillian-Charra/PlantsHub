@@ -26,9 +26,7 @@ class Plant
     use FromArrayTrait;
 
     #xp de base
-    const XP_BASE = 10;
-    # Coefficient définissant l'xp donnée par une plante
-    const COEFF = 1.5;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -57,8 +55,11 @@ class Plant
     #[ORM\OneToMany(mappedBy: 'plant', targetEntity: PlantImages::class)]
     private Collection $plantImages;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $latinName = null;
+    private ?int $XP_BASE = 10;
+    # Coefficient définissant l'xp donnée par une plante
+    private ?float $COEFF = 1.5;
+    //#[ORM\Column(length: 255, nullable: true)]
+    //private ?string $latinName = null;
 
     public function __construct()
     {
@@ -102,7 +103,7 @@ class Plant
     public function xpgiven(): ?float
     {
         $plantLevel = $this->getLevel();
-        $xpgiven = ($this->XP_base*(1+0.2*($plantLevel/$this->COEFF)));
+        $xpgiven = ($this->XP_BASE*(1+0.2*($plantLevel/$this->COEFF)));
         return $xpgiven;
 
     }
@@ -135,7 +136,6 @@ class Plant
             $html=$html."<p class='description-plante'>".$element->getContent()."</p><br/> \r\n";
         }
         return $html;
-
     }
     public function getDescriptionAfter(): ?array
     {
@@ -155,17 +155,28 @@ class Plant
     public function getFullRawDescriptionAfter(): ?string
     {
         $html="";
-        foreach($this->descriptionAfter as $elements){
-            foreach($elements as $element){
-                if ($element["logo"]!=null){
-                    $html+='<img class="logo-illustration" src="'.$element["logo"].'"/> \r\n';
-                }
-                if ($element["title"]!=null){
-                    $html+='<h3 class="titre-description-plante">'.$element["title"].'</h3> \r\n';
-                }
-                $html+='<p class="titre-description-plante">'.$element["content"].'</p><br/> \r\n';
+        foreach($this->descriptionAfter as $element){
+            if ($element->getLogo()!=null){
+                $html=$html."<img class='logo-illustration' src='/images/illustration_description/".$element->getLogo()."'/> \r\n";
             }
+            if ($element->getTitle()!=null){
+                $html=$html."<h3 class='titre-description-plante'>".$element->getTitle()."</h3> \r\n";
+            }
+            $html=$html."<p class='description-plante'>".$element->getContent()."</p><br/> \r\n";
         }
+        return $html;
+    }
+    public function getFichePlante(): ?string
+    {
+        $html="<div class='flex-row w-100 color-sec-darker section-demonstration'>
+            <div class='w-40 div-demonstration'>
+                <img class='w-100' src='/images/plant_images/".$this->getImage()."'>
+            </div>
+            <div class='w-60 div-demonstration'>
+                <h3 class='titre-demonstration w-60 margin-lat-10 margin-top-15'>".$this->getName()."</h3>
+                <div class='paragraphe w-80 margin-lat-10'>".$this->getFullRawDescriptionAfter()."</div>
+            </div>
+        </div>";
         return $html;
     }
 

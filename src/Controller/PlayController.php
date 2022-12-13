@@ -9,6 +9,7 @@ use App\Repository\PlantRepository;
 use App\Repository\UserHasDiscoveredRepository;
 use App\Repository\UserRepository;
 use DateTime;
+use phpDocumentor\Reflection\PseudoTypes\True_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +27,7 @@ class PlayController extends AbstractController
         ]);
     }
     #[Route('/apiphoto', name: 'app_api_photo')]
-    public function savePhoto(PlantRepository $plantrepository,UserRepository $userrepository,UserHasDiscoveredRepository $UHDrepository):Response
+    public function savePhoto(PlantRepository $plantrepository,ElementRepository $elementRepository,UserHasDiscoveredRepository $UHDrepository,UserRepository $userrepository):Response
     {
         $UHDentity= new UserHasDiscovered; 
         $data = $_POST['image'];
@@ -48,8 +49,12 @@ class PlayController extends AbstractController
         $UHDentity->setDate($date);
         $UHDentity->setPhoto($filename);
         $UHDrepository->save($UHDentity,True);
-        $response=new Response();
+        $plant->setDescriptionAfter($elementRepository);
+
+        $user->setXP($user->getXP()+$plant->xpgiven());
+        $user->XPmanager();
+        $userrepository->save($user,true);
+        $response=new Response(json_encode(["filename"=>$filename,"fichePlanteAfter"=>$plant->getFichePlante(),"plantName"=>$plant->getName()]));
         return $response;
     }
-
 }

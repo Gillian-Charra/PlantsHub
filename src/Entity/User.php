@@ -16,7 +16,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     # Coefficient de gestion de lvl
-    public const COEFF = 30;
+    public ?int $COEFF = 30;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -208,12 +208,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    public function XPmanager(int $XP, int $level): ?float
+    public function XPmanager(): self
     {
-        if ($XP >= ($level * $this->COEFF))
+        while ($this->getXP() >= ($this->getLevel() * $this->COEFF))
         {
-            $level = $level++; 
+            $this->setLevel($this->getLevel()+1); 
         }
-        return $level;
+        return $this;
     }
 }

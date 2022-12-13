@@ -167,4 +167,10 @@ ul {
   margin: 0;
 }
 
+.popup {
+  z-index: 2;
+  background-color: #424937;
+  margin-top: 5vw;
+}
+
 /*# sourceMappingURL=stats.css.map */
