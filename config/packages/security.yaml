@@ -38,8 +38,8 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/play, roles: ROLE_USER }
-        - { path: ^/, requires_channel: http }
-        #- { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/stats, roles: ROLE_USER }
+        - { path: ^/admin, roles: ROLE_ADMIN }
 
         - { path: ^/profile-settings, roles: ROLE_USER }
 

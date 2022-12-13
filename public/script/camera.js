@@ -112,7 +112,7 @@ $("#save").click(function ()  {
     },
     success: function(d){
       d=JSON.parse(d)
-      document.getElementById("fiche-reussite").innerHTML=`<h2>Félicitation tu as découvert une nouvelle plante:${d.plantName}</h2><img src="/images/photo/${d.filename}"/>${d.fichePlanteAfter}` ; 
+      document.getElementById("fiche-reussite").innerHTML=`<h2>Félicitation tu as découvert une nouvelle plante: ${d.plantName}</h2><img style="margin-bottom:5%;" src="/images/photo/${d.filename}"/>${d.fichePlanteAfter}` ; 
       document.getElementById("fiche-reussite").classList.remove("hidden-top");
     }
   });
