@@ -73,10 +73,13 @@ async function jsonFetch(url){
   }
   throw response
 }
-async function getDescriptionPopUp(planteId){
+async function getDescriptionPopUp(planteId,userId){
   const popup=document.getElementById('popup');
   const body=document.getElementById('container');
-  popup.innerHTML=await jsonFetch(`/stats/api/descriptionAfter/${planteId}`);
+  var a=await jsonFetch(`/stats/api/photo/${planteId}/${userId}`)
+  popup.innerHTML=`<div style="font-size:17px;color:grey;"class="color-sec-darker flex-row"><img style="height:10vh;" src="/images/photo/${a.photo}"/><p>Découverte le: ${a.date}, lat: ${a.latitude} long: ${a.longitude}</p></div>`
+  popup.innerHTML+=await jsonFetch(`/stats/api/descriptionAfter/${planteId}`);
+
   popup.classList.remove('display-no');
   body.classList.add("opacity-30");
   body.addEventListener('click', function() {

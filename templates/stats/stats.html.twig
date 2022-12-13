@@ -41,7 +41,7 @@
     </div>
     <ul class="hs">
         {% for plante in famille %}
-      <li class="hs__item"  {% if (matchs[plante.name]|length==0) %}style="filter: grayscale(100%);"{% else %}onclick="getDescriptionPopUp({{plante.id}}){% endif %}"> 
+      <li class="hs__item"  {% if (matchs[plante.name]|length==0) %}style="filter: grayscale(100%);"{% else %}onclick="getDescriptionPopUp({{plante.id}},{{matchs[plante.name][0].user.id}}){% endif %}"> 
         <div class="hs__item__image__wrapper">
           <img class="hs__item__image" src="/images/plant_images/{{plante.image}}" alt="">
         </div>
