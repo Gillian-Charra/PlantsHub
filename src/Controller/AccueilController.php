@@ -35,7 +35,6 @@ class AccueilController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) 
         {
-            $user->setPassword();
             $entityManager->persist($user);
             $entityManager->flush();
         }
