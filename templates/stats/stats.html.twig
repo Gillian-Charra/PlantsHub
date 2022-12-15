@@ -27,9 +27,11 @@
             	<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/register">S'enregistrer</a></li>
 			{% endif %}
 		</ul>
+
        {% endblock %}
 {% block body %}
-<div class="container">
+    <div id="popup" class="popup w-80  display-no fix margin-lat-10 "></div>
+<div id="container" class="container">
 {% for famille in familles %}
   <div class="hs__wrapper">
     <div class="hs__header">
@@ -39,9 +41,9 @@
     </div>
     <ul class="hs">
         {% for plante in famille %}
-      <li class="hs__item"> 
+      <li class="hs__item"  {% if (matchs[plante.name]|length==0) %}style="filter: grayscale(100%);"{% else %}onclick="getDescriptionPopUp({{plante.id}},{{matchs[plante.name][0].user.id}}){% endif %}"> 
         <div class="hs__item__image__wrapper">
-          <img class="hs__item__image" {% if (matchs[plante.name]|length==0) %}style="filter: grayscale(100%);"{% endif %} src="/images/plant_images/{{plante.image}}" alt="">
+          <img class="hs__item__image" src="/images/plant_images/{{plante.image}}" alt="">
         </div>
         <div class="hs__item__description"><span class="hs__item__title">{{plante.name}}</span><span class="hs__item__subtitle">{% if (matchs[plante.name]|length>=1) %}Trouvé - {% endif %}Level:{{plante.level}}</span></div>
       </li>
@@ -50,6 +52,7 @@
   </div>
   {% endfor %}
 </div>
+
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="https://unpkg.com/feather-icons"></script>
 <script src="{{ asset('script/stats.js') }}"></script>

@@ -35,10 +35,9 @@ class AccueilController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) 
         {
-            if ($form->getData() != getPassword())
-            {
-                $user = $form->get("Password")->getData();
-            }
+            $user->setPassword();
+            $entityManager->persist($user);
+            $entityManager->flush();
         }
         return $this->render('registration/editPassword.html.twig', [
             'editForm' => $form->createView(),

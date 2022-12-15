@@ -103,12 +103,19 @@ class AppFixtures extends Fixture
                 ]
             ],
         ];
+        $tableauXP=[
+            "coquelicot"=>3,
+            "Pavot somnifère"=>4,
+            "Lys"=>3,
+            "Erythroxylum coca"=>4,
+        ];
 
         foreach ($plantsJson as $plant){
             $tableauplant[]=$plant["name"];
             $tableauImages[$plant["name"]]=$plant["photos"];
             $tableauDescriptionsBefore[$plant["name"]]=$plant["before"];
             $tableauDescriptionsAfter[$plant["name"]]=$plant["after"];
+            $tableauXP[$plant["name"]]=$plant["level"];
         }
         
         $familiesName=[
@@ -137,7 +144,7 @@ class AppFixtures extends Fixture
         foreach($tableauplant as $plantName) {
             $plant = new Plant();
             $plant->setName($plantName);
-            $plant->setLevel(mt_rand(1 , 2));//a changer
+            $plant->setLevel($tableauXP[$plantName]);//a changer
             $plant->setDisplay(1);
             switch($plantName) {
                 case "Pavot somnifère":

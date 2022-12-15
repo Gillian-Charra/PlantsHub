@@ -25,6 +25,9 @@ $ecart:5;
   .margin-bot-#{($ecart* $i)}{
     margin-bottom:$ecart*$i*1%;
   }
+  .padding-#{($ecart* $i)}{
+    padding:$ecart*$i*1%;
+  }
 }
 .fix{
     position: fixed;
@@ -59,6 +62,12 @@ $ecart:5;
 .top-fix{
   position: fixed;
   top: 0;
+}
+.absolute{
+  position: absolute;
+}
+.top{
+  top:0;
 }
 .left-0{
   left: 0;

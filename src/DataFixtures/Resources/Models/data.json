@@ -186,5 +186,31 @@
         "text": "Laves les feuilles, puis remplis les de fromage boursin et ça te fera une super entrée pour surprendre tes parents !"
       }
     ]
+  },
+  {
+    "name": "Achillée millefeuille",
+    "level": 3,
+    "before": [
+      {
+        "text": "Cette plante forme plein de petites fleurs blanches mellifères."
+      },
+      {
+        "text": "Plante anti-inflammatoire et anti-bactérienne permettant une désinfection des plaies et abcès. Il s’en suit une diminution de l’enflure et une guérison accélérée."
+      }
+    ],
+    "photos": [
+      "achillea_millefolium.jpg"
+    ],
+    "after": [
+      {
+        "text": "Il s'agit d'une des plantes les plus couramment utilisées en médecine traditionnelle depuis plus de 3 000 ans"
+      },
+      {
+        "text": "Elle se nomme aussi : herbe à dindes, herbes à dindons, persil à dinde5, herbe aux charpentiers, herbe aux cochers, herbe aux militaires ou au soldat, herbe à la coupure ou saigne-nez"
+      },
+      {
+        "text": "Appliquez sous forme de cataplasme sur les blessures ou mamelons crevassés. Vous pouvez aussi appliquer sur le visage lors d’acné et de points noirs, voire même en cas de coupure sévère."
+      }
+    ]
   }
 ]

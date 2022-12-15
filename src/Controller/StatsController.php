@@ -31,5 +31,19 @@ class StatsController extends AbstractController
                 'matchs'=>$matchs
         ]);
     }
+    #[Route('/api/descriptionAfter/{idplante}', name: 'app_api_stats_descAftr')]
+    public function getFichePlante($idplante,PlantRepository $plantrepository,ElementRepository $elementRepository)
+    {
+        $plante=$plantrepository->find($idplante)->setDescriptionAfter($elementRepository);
+        return $this->json($plante->getFichePlante());
+
+    }
+    #[Route('/api/photo/{idplante}/{iduser}', name: 'app_api_stats_photo')]
+    public function getPhoto($idplante,$iduser,UserHasDiscoveredRepository $UHDRepository)
+    {
+        $photo=$UHDRepository->findBy(["plant"=> $idplante,"user"=>$iduser])[0];
+        return new Response(json_encode(["photo"=> $photo->getPhoto(),"date"=>$photo->getDate()->format('Y-m-d H:i:s'),"longitude"=>$photo->getLongitude(),"latitude"=>$photo->getLatitude()]));
+    }
+  
 
 }

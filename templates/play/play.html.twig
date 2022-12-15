@@ -52,7 +52,7 @@
     <div id="longitude" class="display-no"></div>
     <div id="plant-id" class="display-no">1</div>
     <div id="show-plant-info-btn" class="fleche margin-vert-25 fa-solid fa-arrow-left top-fix" onclick="afficherPlante()"></div>
-    <!--image-->
+    <!--fiche plante info-->
         <div id="plant-info" class="hidden-left transition-movement top-fix flex-row w-100 color-sec section-demonstration h-100">
 			<div class="w-40 div-demonstration">
 				<img class="w-100" src="/images/plant_images/{{plant.image}}">
@@ -63,6 +63,11 @@
 			</div>
             <div id="hide-plant-info-btn" class="fleche display-no margin-vert-25 fa-solid fa-arrow-left right-0" onclick="cacherPlante()"></div>
 	    </div>
+    <!--Fiche reussite-->
+    <div id="fiche-reussite" class="hidden-top transition-movement padding-10 top absolute flex-col w-100 color-sec section-demonstration">
+
+
+	</div>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="https://unpkg.com/feather-icons"></script>
 <script src="{{ asset('script/camera.js') }}"></script>

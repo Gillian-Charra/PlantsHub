@@ -11,6 +11,7 @@
     "compile-help":"sass helpers.scss helpers.css",
     "watch": "sass --watch public/scss/style.scss public/css/style.css",
     "watch-help": "sass --watch public/scss/helpers.scss public/css/helpers.css",
-    "watch-stats": "sass --watch public/scss/stats.scss public/css/stats.css"
+    "watch-stats": "sass --watch public/scss/stats.scss public/css/stats.css",
+    "watch-cam": "sass --watch public/scss/styleCam.scss public/css/styleCam.css"
   }
 }
