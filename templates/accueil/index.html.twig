@@ -9,7 +9,7 @@
 		{% block ul %}
 		<ul>
 			
-			<li class="user-options-button li-clean"><a class="a-clean" href="/profile-settings"><img class="profile-image" src="{% if app.user %}/images/avatar/{{ app.user.profilepicture }}{% else %}/images/decoration/unidentified.png{% endif %}"/></a>{% if app.user %}Level - {{app.user.level}}, Score - {{app.user.xp}}{% endif %}</li>
+			<li class="user-options-button li-clean"><a class="a-clean" href="profile-settings"><img class="profile-image" src="{% if app.user %}/images/avatar/{{ app.user.profilepicture }}{% else %}/images/decoration/unidentified.png{% endif %}"/></a>{% if app.user %}Level - {{app.user.level}}, Score - {{app.user.xp}}{% endif %}</li>
 			
 			<li class="options-menu-lateral li-clean"><a class="liens-menu-lateral a-clean" href="/accueil">Accueil</a></li>
 

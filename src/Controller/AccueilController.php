@@ -4,13 +4,18 @@ namespace App\Controller;
 
 use App\Form\UserType;
 use App\Entity\User;
+use App\Form\EditProfileFormType;
 use App\Repository\UserRepository;
 use App\Repository\ElementRepository;
 use App\Repository\PlantRepository;
+use App\Security\AppAuthenticator;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 #[Route('/accueil')]
 class AccueilController extends AbstractController
@@ -27,18 +32,35 @@ class AccueilController extends AbstractController
             'plants'=> $plantsALaUne,
         ]);
     }
-    #[Route("/edit" , name:"user_edit")]
-    public function edit(Request $request): Response
+    #[Route("/profile-settings" , name:"user_edit")]
+    public function edit(Request $request,EntityManagerInterface $entityManager,UserRepository $userRepository,UserPasswordHasherInterface $userPasswordHasher,  UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator,): Response
     {
         $user = $this->getUser();
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(EditProfileFormType::class, $user);
+        $form->get('password')->setData("");
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) 
         {
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $form->get('password')->getData()
+                )
+            );
+            //$filename=date('Y-m-d').'_'.$user->getName().'_'.$form['name']->getData();//['test'];
+            //$file = $form['profile_picture']->getData();
+            //$file->move('images/avatar/', $filename);
+            //$user->setProfilePicture($filename);
             $entityManager->persist($user);
             $entityManager->flush();
+            $userAuthenticator->authenticateUser(
+                $user,
+                $authenticator,
+                $request
+            );
+            return $this->redirect("/accueil");
         }
-        return $this->render('registration/editPassword.html.twig', [
+        return $this->render('accueil/editPassword.html.twig', [
             'editForm' => $form->createView(),
         ]);
     }
