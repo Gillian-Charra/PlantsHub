@@ -11,10 +11,12 @@ php bin/console doctrine:database:create
 
 php bin/console doctrine:migration:migrate
 
+entrez la commande php bin/console doctrine:fixtures:load pour preremplir la base de donnée
+
 symfony server:start (si problème arrêtez votre server en faisant : symfony server:stop puis symfony server:start)
 
 ouvrez votre navigateur puis copier "http://127.0.0.1:8000/accueil/"
 
-Connectez vous 
+Connectez vous a l'utilisateur admin mot de passe admin crée au préalable par le chargement des fixtures
 
-Amusez-vous :p
+PS: Les maquettes se situent dans le dossier maquettes
