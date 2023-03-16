@@ -3,12 +3,20 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/normalize.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/helpers.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/popup.css')}}">
             <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/styleCam.css') }}">
+    <style>
+      #map {
+        height: 400px;
+        width: 100%;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDARqHUf0liQB5a957eQs6gT1lGw3VlfJE" async defer></script>
     {% endblock %}
 
 		{% block ul %}
@@ -27,6 +35,7 @@
 		</ul>
        {% endblock %}
 {% block body %}
+    
     <div class="display-cover">
     <video autoplay></video>
     <canvas class="d-none"></canvas>
@@ -40,7 +49,7 @@
     <img id="screenshot-image" class="screenshot-image d-none" alt="">
 
     <div class="controls">
-        <button class="btn btn-danger play" title="Play"><i data-feather="play-circle"></i></button>
+        <button onclick="closePopup()" class="btn btn-danger play" title="Play"><i data-feather="play-circle"></i></button>
         <button class="btn btn-info pause d-none" title="Pause"><i data-feather="pause"></i></button>
         <button class="btn btn-outline-success screenshot d-none" title="ScreenShot"><i data-feather="image"></i></button>
     </div>
@@ -52,6 +61,11 @@
     <div id="longitude" class="display-no"></div>
     <div id="plant-id" class="display-no">1</div>
     <div id="show-plant-info-btn" class="fleche margin-vert-25 fa-solid fa-arrow-left top-fix" onclick="afficherPlante()"></div>
+    <div class="popup">
+		<p>Veuillez cliquer sur le bouton d'activation du jeu
+        puis activer votre caméra.</p>
+        <button onclick="closePopup()">Fermer</button>
+	</div>
     <!--fiche plante info-->
         <div id="plant-info" class="hidden-left transition-movement top-fix flex-row w-100 color-sec section-demonstration h-100">
 			<div class="w-40 div-demonstration">
@@ -64,10 +78,10 @@
             <div id="hide-plant-info-btn" class="fleche display-no margin-vert-25 fa-solid fa-arrow-left right-0" onclick="cacherPlante()"></div>
 	    </div>
     <!--Fiche reussite-->
-    <div id="fiche-reussite" class="hidden-top transition-movement padding-10 top absolute flex-col w-100 color-sec section-demonstration">
-
-
-	</div>
+    <div id="fiche-reussite" class="hidden-top transition-movement padding-10 top absolute flex-col w-100 color-sec section-demonstration"></div>
+    <div id="map"></div>
+</div>
+<script src="{{ asset('script/popup.js')}}"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="https://unpkg.com/feather-icons"></script>
 <script src="{{ asset('script/camera.js') }}"></script>

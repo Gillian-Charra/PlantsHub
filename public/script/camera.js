@@ -99,6 +99,12 @@ const doScreenshot = () => {
 $("#save").click(function ()  {
 
   if (navigator.geolocation) {
+    function showPosition(position)
+    {
+      var latitude = position.coords.latitude;
+      var longitude = position.coords.longitude;
+      initMap(latitude, longitude);
+    }
     navigator.geolocation.getCurrentPosition(function (position) {
   $.ajax({
      type: "POST",
@@ -107,8 +113,8 @@ $("#save").click(function ()  {
      data:  {
     image : canvas.toDataURL('image/webp'),
     plant:  document.getElementById('plant-title').innerHTML,
-    longitude: position.coords.longitude,
-    latitude: position.coords.latitude,
+    longitude: position.coords.longitude.toFixed(5),
+    latitude: position.coords.latitude.toFixed(5),
     },
     success: function(d){
       d=JSON.parse(d)
@@ -116,6 +122,16 @@ $("#save").click(function ()  {
       document.getElementById("fiche-reussite").classList.remove("hidden-top");
     }
   });
+  function initMap(latitude, longitude) {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: latitude, lng: longitude},
+      zoom: 15
+    });
+    var marker = new google.maps.Marker({
+      position: {lat: latitude, lng: longitude},
+      map: map
+    });
+  }
 })
 } 
 });

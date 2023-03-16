@@ -21,7 +21,10 @@ class UserCrudController extends AbstractCrudController
         return [
             TextField::new('name'),
             TextField::new('password')
-                ->setFormType(PasswordType::class),
+                ->setFormType(PasswordType::class)
+                ->setFormTypeOptions(['attr'=> [
+                    'type' => 'password',
+                ],]),
             BooleanField::new('is_admin'),
             ImageField::new('profile_picture')
                 ->setUploadDir('public/images/avatar')

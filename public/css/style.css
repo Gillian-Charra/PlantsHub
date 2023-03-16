@@ -1,3 +1,6 @@
+.hidden {
+  display: none;
+}
 .color-prim {
   background-color: #555e45;
 }

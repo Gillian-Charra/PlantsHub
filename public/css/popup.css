@@ -1,0 +1,12 @@
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #555e45;
+    border: 1px solid black;
+    padding: 20px;
+    box-shadow: 0px 0px 10px grey;
+    z-index: 9999;
+    display: none;
+}
